@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'SUIT Variable';
+  font-weight: 100 900;
+  src: url('./SUIT-Variable.woff2') format('woff2-variations');
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -65,5 +71,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'SUIT Variable', sans-serif;
+    font-weight: 500;
   }
 }

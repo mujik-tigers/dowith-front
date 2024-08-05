@@ -19,7 +19,116 @@ export default {
       },
     },
     extend: {
+      fontSize: {
+        XB32: [
+          '2rem', // 32px
+          {
+            fontWeight: 800,
+            lineHeight: '130%',
+          },
+        ],
+        XB24: [
+          '1.5rem', // 24px
+          {
+            fontWeight: 800,
+            lineHeight: '130%',
+          },
+        ],
+        XB20: [
+          '1.25rem', // 20px
+          {
+            fontWeight: 800,
+            lineHeight: '130%',
+          },
+        ],
+        B20: [
+          '1.25rem', // 20px
+          {
+            fontWeight: 700,
+            lineHeight: '130%',
+          },
+        ],
+        B16: [
+          '1rem', // 16px
+          {
+            fontWeight: 700,
+            lineHeight: '130%',
+          },
+        ],
+        B14: [
+          '0.875rem', // 14px
+          {
+            fontWeight: 700,
+            lineHeight: '130%',
+          },
+        ],
+        B12: [
+          '0.75rem', // 12px
+          {
+            fontWeight: 700,
+            lineHeight: '130%',
+          },
+        ],
+        B10: [
+          '0.625rem', // 10px
+          {
+            fontWeight: 700,
+            lineHeight: '130%',
+          },
+        ],
+        M16: [
+          '1rem', // 16px
+          {
+            fontWeight: 500,
+            lineHeight: '130%',
+          },
+        ],
+        M14: [
+          '0.875rem', // 14px
+          {
+            fontWeight: 500,
+            lineHeight: '130%',
+          },
+        ],
+        M12: [
+          '0.75rem', // 12px
+          {
+            fontWeight: 500,
+            lineHeight: '130%',
+          },
+        ],
+        M10: [
+          '0.625rem', // 10px
+          {
+            fontWeight: 500,
+            lineHeight: '130%',
+          },
+        ],
+      },
+
       colors: {
+        /* custom styles */
+        black: '#212529',
+        dim: 'rgba(33, 37, 41, 0.63)',
+        white: '#FAFAFA',
+        gray100: '#f4f4f4',
+        gray200: '#ebebeb',
+        gray300: '#dddddd',
+        line: '#ECECEC',
+        title: '#212529',
+        textActive: '#444444',
+        text: '#5A5A5A',
+        textWeak: '#828282',
+        red: '#ff6b6b',
+        yellow: '#ffd43b',
+        green: '#89FF6B',
+        blue: '#66d9e8',
+        pinkLight: '#ffdada',
+        yelloLight: '#ffd2b3',
+        orangeLight: '#ffd4a9',
+        blueLight: '#d1eaed',
+
+        /* shadcn styles */
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
