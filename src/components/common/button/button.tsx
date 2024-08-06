@@ -23,7 +23,11 @@ const bgColorClasses = {
   white: 'bg-white',
   black: 'bg-black',
   blue: 'bg-blueLight hover:bg-blueLight/90',
+<<<<<<< HEAD
 } as const;
+=======
+};
+>>>>>>> adb1e65 (feat: button 컴포넌트 bgColor 색상 추가)
 
 const textColorClasses = {
   text: 'text-text',
