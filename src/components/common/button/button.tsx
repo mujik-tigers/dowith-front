@@ -22,6 +22,7 @@ const bgColorClasses = {
   yellow: 'bg-yellow hover:bg-yellow/90',
   white: 'bg-white',
   black: 'bg-black',
+  blue: 'bg-blueLight hover:bg-blueLight/90',
 };
 
 const textColorClasses = {
