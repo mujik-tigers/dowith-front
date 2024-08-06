@@ -10,7 +10,7 @@ interface IButtonProps {
 }
 
 const sizeClasses = {
-  fixedS: 'h-[36px] w-[72px] rounded-lg',
+  fixedS: 'h-[36px] w-[72px] rounded-md',
   fixedM: 'h-[40px] w-[160px] rounded-lg',
   fixedL: 'h-[48px] w-[184px] rounded-lg',
   flexibleM: 'h-[40px] w-full rounded-lg',
