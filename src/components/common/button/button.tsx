@@ -6,16 +6,16 @@ interface IButtonProps {
   size?: keyof typeof sizeClasses;
   bgColor?: keyof typeof bgColorClasses;
   textColor?: keyof typeof textColorClasses;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 const sizeClasses = {
-  fixedS: 'h-[36px] w-[72px]',
-  fixedM: 'h-[40px] w-[160px]',
-  fixedL: 'h-[48px] w-[184px]',
-  flexibleM: 'h-[40px] w-full',
-  flexibleL: 'h-[54px] w-full',
-};
+  fixedS: 'h-[36px] w-[72px] rounded-lg',
+  fixedM: 'h-[40px] w-[160px] rounded-lg',
+  fixedL: 'h-[48px] w-[184px] rounded-lg',
+  flexibleM: 'h-[40px] w-full rounded-lg',
+  flexibleL: 'h-[54px] w-full rounded-xl',
+} as const;
 
 const bgColorClasses = {
   red: 'bg-red hover:bg-red/90',
@@ -23,14 +23,14 @@ const bgColorClasses = {
   white: 'bg-white',
   black: 'bg-black',
   blue: 'bg-blueLight hover:bg-blueLight/90',
-};
+} as const;
 
 const textColorClasses = {
   text: 'text-text',
   textWeek: 'text-week',
   textActive: 'text-active',
   textWhite: 'text-white',
-};
+} as const;
 
 const Button = ({
   children,

@@ -18,7 +18,6 @@ export const LoginPage = () => {
             <Button
               size="flexibleL"
               bgColor="yellow"
-              className="rounded-xl"
               onClick={kakaoLoginButtonHandler}
             >
               <img
@@ -27,7 +26,7 @@ export const LoginPage = () => {
                 className="max-w-none"
               />
             </Button>
-            <Button size="flexibleL" bgColor="white" className="rounded-xl">
+            <Button size="flexibleL" bgColor="white" onClick={() => {}}>
               <img
                 src={googleLoginButton}
                 alt="googleLoginButton"
