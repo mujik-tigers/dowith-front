@@ -16,7 +16,14 @@ export const TextInput: React.FC<{
   placeholder?: string;
   disabled?: boolean;
   icon?: React.ReactNode;
-}> = ({ placeholder = '', borderType, icon, disabled = false }) => {
+  iconAnimation?: TAnimationType;
+}> = ({
+  placeholder = '',
+  borderType,
+  icon,
+  disabled = false,
+  iconAnimation = 'none',
+}) => {
   return (
     <>
       <Input
@@ -25,6 +32,7 @@ export const TextInput: React.FC<{
         className={`${inputTypeClasses[borderType]}`}
         disabled={disabled}
         icon={icon}
+        iconAnimation={iconAnimation}
       />
     </>
   );

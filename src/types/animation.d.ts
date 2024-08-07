@@ -1,0 +1,1 @@
+type TAnimationVariant = 'none' | 'rotate';

@@ -5,7 +5,21 @@ import * as React from 'react';
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode;
+  iconAnimation: TAnimationType;
 }
+
+const getInputAnimaionStyles = (
+  iconAnimation: TAnimationType,
+  isFocused: boolean
+) => {
+  switch (iconAnimation) {
+    case 'rotate':
+      return { rotate: isFocused ? 90 : 0 };
+    case 'none':
+    default:
+      return {};
+  }
+};
 
 /**
  * 삭제 사항 :
@@ -22,15 +36,17 @@ export interface InputProps
  */
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, icon, ...props }, ref) => {
+  ({ className, type, icon, iconAnimation, ...props }, ref) => {
     const [isFocused, setIsFocused] = React.useState(false);
+
+    const animationStyle = getInputAnimaionStyles(iconAnimation, isFocused);
 
     return (
       <div className={cn('relative', className)}>
         {icon && (
           <motion.div
             className="pointer-events-none absolute inset-y-0 ml-3 flex items-center justify-center"
-            animate={{ rotate: isFocused ? 90 : 0 }}
+            animate={animationStyle}
             transition={{ duration: 0.3 }}
           >
             {icon}
