@@ -1,1 +1,1 @@
-type TAnimationVariant = 'none' | 'rotate';
+type TAnimationType = 'none' | 'rotate';
