@@ -1,5 +1,5 @@
 import { API_URL } from '@/constants/api';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 export const login = async ({
   authorizationCode,
@@ -7,9 +7,9 @@ export const login = async ({
 }: {
   authorizationCode: string;
   oauthType: string;
-}): Promise<AxiosResponse<TLoginResponse>> => {
+}): Promise<TLoginResponse> => {
   try {
-    const response = await axios.post(
+    const response = await axios.post<TLoginResponse>(
       `${API_URL}/oauth/${oauthType}?authorizationCode=${authorizationCode}`,
       {},
       {
@@ -18,7 +18,7 @@ export const login = async ({
         },
       }
     );
-    return response;
+    return response.data;
   } catch (error) {
     throw new Error('로그인에 실패하였습니다. 잠시 후 다시 시도해주세요.');
   }

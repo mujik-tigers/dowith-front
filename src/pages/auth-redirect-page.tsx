@@ -20,9 +20,10 @@ export const AuthRedirectPage = () => {
         { authorizationCode, oauthType },
         {
           onSuccess: (data) => {
+            const { code, name } = data.data;
             setUserData({
-              code: data.data.data.code,
-              name: data.data.data.name,
+              code: code,
+              name: name,
             });
             navigate('/');
           },
@@ -31,5 +32,5 @@ export const AuthRedirectPage = () => {
     }
   }, [authorizationCode, oauthType, login, navigate, setUserData]);
 
-  return <></>;
+  return <>{authorizationCode}</>;
 };
