@@ -1,15 +1,6 @@
 import { Button as UIButton } from '@/components/ui/button';
 
-interface IButtonProps {
-  children: React.ReactNode;
-  className?: string;
-  size?: keyof typeof sizeClasses;
-  bgColor?: keyof typeof bgColorClasses;
-  textColor?: keyof typeof textColorClasses;
-  onClick: () => void;
-}
-
-const sizeClasses = {
+const SIZE_CLASSES = {
   fixedS: 'h-[36px] w-[72px] rounded-md',
   fixedM: 'h-[40px] w-[160px] rounded-lg',
   fixedL: 'h-[48px] w-[184px] rounded-lg',
@@ -17,7 +8,7 @@ const sizeClasses = {
   flexibleL: 'h-[54px] w-full rounded-xl',
 } as const;
 
-const bgColorClasses = {
+const BG_COLOR_CLASSES = {
   red: 'bg-red hover:bg-red/90',
   yellow: 'bg-yellow hover:bg-yellow/90',
   white: 'bg-white',
@@ -25,29 +16,34 @@ const bgColorClasses = {
   blue: 'bg-blueLight hover:bg-blueLight/90',
 } as const;
 
-const textColorClasses = {
+const TEXT_COLOR_CLASSES = {
   text: 'text-text',
   textWeek: 'text-week',
   textActive: 'text-active',
   textWhite: 'text-white',
 } as const;
 
-const Button = ({
+export const Button: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+  size?: keyof typeof SIZE_CLASSES;
+  bgColor?: keyof typeof BG_COLOR_CLASSES;
+  textColor?: keyof typeof TEXT_COLOR_CLASSES;
+  onClick: () => void;
+}> = ({
   children,
   className,
   size = 'flexibleM',
   bgColor = 'red',
   textColor = 'text',
   onClick,
-}: IButtonProps) => {
+}) => {
   return (
     <UIButton
       onClick={onClick}
-      className={`${sizeClasses[size]} ${bgColorClasses[bgColor]} ${textColorClasses[textColor]} ${className}`}
+      className={`${SIZE_CLASSES[size]} ${BG_COLOR_CLASSES[bgColor]} ${TEXT_COLOR_CLASSES[textColor]} ${className}`}
     >
       {children}
     </UIButton>
   );
 };
-
-export default Button;
