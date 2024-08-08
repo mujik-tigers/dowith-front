@@ -1,20 +1,30 @@
-import { create } from 'zustand';
+import { create, StateCreator } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-type TUserData = {
-  code: string | null;
-  name: string | null;
+type TUserAppData = {
+  userCode: string | null;
+  userAppName: string | null;
+  accessToken: string | null;
+  refreshToken: string | null;
 };
 
-type TUserStore = {
-  userData: TUserData;
-  setUserData: (userData: Partial<TUserData>) => void;
+type TUserAppStore = {
+  userData: TUserAppData;
+  setUserData: (userData: Partial<TUserAppData>) => void;
   clearUserData: () => void;
 };
 
-export const useUserStore = create<TUserStore>((set) => ({
+const userAppStoreCreator: StateCreator<
+  TUserAppStore,
+  [],
+  [],
+  TUserAppStore
+> = (set) => ({
   userData: {
-    code: null,
-    name: null,
+    userCode: null,
+    userAppName: null,
+    accessToken: null,
+    refreshToken: null,
   },
   setUserData: (userData) =>
     set((state) => ({
@@ -23,8 +33,20 @@ export const useUserStore = create<TUserStore>((set) => ({
   clearUserData: () =>
     set(() => ({
       userData: {
-        code: null,
-        name: null,
+        userCode: null,
+        userAppName: null,
+        accessToken: null,
+        refreshToken: null,
       },
     })),
-}));
+});
+
+export const useUserAppStore = create<TUserAppStore>()(
+  persist(userAppStoreCreator, {
+    name: 'user-storage',
+    partialize: (state) => ({
+      accessToken: state.userData.accessToken,
+      refreshToken: state.userData.refreshToken,
+    }),
+  })
+);
