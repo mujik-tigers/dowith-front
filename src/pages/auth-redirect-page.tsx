@@ -1,5 +1,5 @@
 import { useOauthLogin } from '@/hooks/use-oauth-login';
-import { useUserStore } from '@/store/auth/use-user-store';
+import { useUserAppStore } from '@/store/auth/use-user-store';
 import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ export const AuthRedirectPage = () => {
     stateParam && JSON.parse(decodeURIComponent(stateParam)).oauthType;
 
   const { mutate: login } = useOauthLogin();
-  const { setUserData } = useUserStore();
+  const { setUserData } = useUserAppStore();
 
   useEffect(() => {
     if (authorizationCode && oauthType) {
@@ -20,17 +20,19 @@ export const AuthRedirectPage = () => {
         { authorizationCode, oauthType },
         {
           onSuccess: (data) => {
-            const { code, name } = data.data;
+            const { code, name, accessToken, refreshToken } = data.data;
             setUserData({
-              code: code,
-              name: name,
+              userCode: code,
+              userAppName: name,
+              accessToken: accessToken,
+              refreshToken: refreshToken,
             });
-            navigate('/');
+            navigate('/setup/app-name');
           },
         }
       );
     }
   }, [authorizationCode, oauthType, login, navigate, setUserData]);
 
-  return <>{authorizationCode}</>;
+  return <></>;
 };
