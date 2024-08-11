@@ -18,8 +18,8 @@ const BG_COLOR_CLASSES = {
 
 const TEXT_COLOR_CLASSES = {
   text: 'text-text',
-  textWeek: 'text-week',
-  textActive: 'text-active',
+  textWeak: 'text-textWeak',
+  textActive: 'text-textActive',
   textWhite: 'text-white',
 } as const;
 
