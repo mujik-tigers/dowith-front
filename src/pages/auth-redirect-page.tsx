@@ -1,4 +1,4 @@
-import { useOauthLogin } from '@/hooks/use-oauth-login';
+import { useOauthLogin } from '@/hooks/queries/use-oauth-login';
 import { useUserAppStore } from '@/store/auth/use-user-store';
 import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';

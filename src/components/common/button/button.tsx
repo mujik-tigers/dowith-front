@@ -9,18 +9,11 @@ const SIZE_CLASSES = {
 } as const;
 
 const BG_COLOR_CLASSES = {
-  red: 'bg-red hover:bg-red/90',
-  yellow: 'bg-yellow hover:bg-yellow/90',
-  white: 'bg-white',
-  black: 'bg-black',
-  blue: 'bg-blueLight hover:bg-blueLight/90',
-} as const;
-
-const TEXT_COLOR_CLASSES = {
-  text: 'text-text',
-  textWeek: 'text-week',
-  textActive: 'text-active',
-  textWhite: 'text-white',
+  red: 'bg-red hover:bg-red/90 text-white',
+  yellow: 'bg-yellow hover:bg-yellow/90 text-text',
+  white: 'bg-white text-text',
+  black: 'bg-black text-white',
+  blue: 'bg-blueLight hover:bg-blueLight/90 text-text',
 } as const;
 
 export const Button: React.FC<{
@@ -28,20 +21,18 @@ export const Button: React.FC<{
   className?: string;
   size?: keyof typeof SIZE_CLASSES;
   bgColor?: keyof typeof BG_COLOR_CLASSES;
-  textColor?: keyof typeof TEXT_COLOR_CLASSES;
   onClick: () => void;
 }> = ({
   children,
   className,
   size = 'flexibleM',
   bgColor = 'red',
-  textColor = 'text',
   onClick,
 }) => {
   return (
     <UIButton
       onClick={onClick}
-      className={`${SIZE_CLASSES[size]} ${BG_COLOR_CLASSES[bgColor]} ${TEXT_COLOR_CLASSES[textColor]} ${className}`}
+      className={`${SIZE_CLASSES[size]} ${BG_COLOR_CLASSES[bgColor]} ${className}`}
     >
       {children}
     </UIButton>
