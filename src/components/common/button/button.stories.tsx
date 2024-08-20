@@ -13,10 +13,6 @@ export default {
       control: 'select',
       options: ['red', 'yellow', 'white', 'black', 'blue'],
     },
-    textColor: {
-      control: 'select',
-      options: ['text', 'textWeak', 'textActive', 'textWhite'],
-    },
     onClick: { action: 'clicked' },
   },
 } as Meta;
@@ -30,6 +26,5 @@ Default.args = {
   children: 'Button',
   size: 'fixedM',
   bgColor: 'yellow',
-  textColor: 'textWhite',
   onClick: () => alert('onClick!'),
 };
