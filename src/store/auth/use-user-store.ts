@@ -48,5 +48,13 @@ export const useUserAppStore = create<TUserAppStore>()(
       accessToken: state.userData.accessToken,
       refreshToken: state.userData.refreshToken,
     }),
+    merge: (persistedState, currentState) => ({
+      ...currentState,
+      userData: {
+        ...currentState.userData,
+        accessToken: (persistedState as TUserAppData).accessToken,
+        refreshToken: (persistedState as TUserAppData).refreshToken,
+      },
+    }),
   })
 );
