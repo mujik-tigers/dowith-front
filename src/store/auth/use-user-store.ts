@@ -1,4 +1,4 @@
-import { create, StateCreator } from 'zustand';
+import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 type TUserAppData = {
@@ -14,47 +14,31 @@ type TUserAppStore = {
   clearUserData: () => void;
 };
 
-const userAppStoreCreator: StateCreator<
-  TUserAppStore,
-  [],
-  [],
-  TUserAppStore
-> = (set) => ({
-  userData: {
-    userCode: null,
-    userAppName: null,
-    accessToken: null,
-    refreshToken: null,
-  },
-  setUserData: (userData) =>
-    set((state) => ({
-      userData: { ...state.userData, ...userData },
-    })),
-  clearUserData: () =>
-    set(() => ({
+export const useUserAppStore = create<TUserAppStore>()(
+  persist(
+    (set) => ({
       userData: {
         userCode: null,
         userAppName: null,
         accessToken: null,
         refreshToken: null,
       },
-    })),
-});
-
-export const useUserAppStore = create<TUserAppStore>()(
-  persist(userAppStoreCreator, {
-    name: 'user-storage',
-    partialize: (state) => ({
-      accessToken: state.userData.accessToken,
-      refreshToken: state.userData.refreshToken,
+      setUserData: (userData) =>
+        set((state) => ({
+          userData: { ...state.userData, ...userData },
+        })),
+      clearUserData: () =>
+        set(() => ({
+          userData: {
+            userCode: null,
+            userAppName: null,
+            accessToken: null,
+            refreshToken: null,
+          },
+        })),
     }),
-    merge: (persistedState, currentState) => ({
-      ...currentState,
-      userData: {
-        ...currentState.userData,
-        accessToken: (persistedState as TUserAppData).accessToken,
-        refreshToken: (persistedState as TUserAppData).refreshToken,
-      },
-    }),
-  })
+    {
+      name: 'user-app-data-storage',
+    }
+  )
 );
