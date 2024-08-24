@@ -14,7 +14,7 @@ type TUserAppStore = {
   clearUserData: () => void;
 };
 
-export const useUserAppStore = create<TUserAppStore>()(
+const useUserAppStore = create<TUserAppStore>()(
   persist(
     (set) => ({
       userData: {
@@ -42,3 +42,24 @@ export const useUserAppStore = create<TUserAppStore>()(
     }
   )
 );
+
+// 특정 상태를 구독하기 위한 커스텀 훅들
+export const useUserInfo = () =>
+  useUserAppStore((state) => ({
+    userAppName: state.userData.userAppName,
+    userCode: state.userData.userCode,
+  }));
+export const useUserCode = () =>
+  useUserAppStore((state) => state.userData.userCode);
+export const useUserAppName = () =>
+  useUserAppStore((state) => state.userData.userAppName);
+export const useAccessToken = () =>
+  useUserAppStore((state) => state.userData.accessToken);
+export const useRefreshToken = () =>
+  useUserAppStore((state) => state.userData.refreshToken);
+
+// setUserData와 clearUserData를 위한 훅
+export const useSetUserData = () =>
+  useUserAppStore((state) => state.setUserData);
+export const useClearUserData = () =>
+  useUserAppStore((state) => state.clearUserData);
