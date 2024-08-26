@@ -31,7 +31,7 @@ export const UserAppNameSetupPage = () => {
    *  userData가 없으면 로그인 페이지, firstTime이 false일 경우는 홈
    * */
   console.log(userData);
-  const { mutate } = useUpdateUserAppName();
+  const { mutate: updateUserAppName } = useUpdateUserAppName();
 
   const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ export const UserAppNameSetupPage = () => {
     console.log('Submitted values:', values);
     const { newName } = values;
 
-    mutate(newName, {
+    updateUserAppName(newName, {
       onSuccess: () => {
         navigate('/');
       },
