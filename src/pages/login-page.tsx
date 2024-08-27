@@ -1,5 +1,5 @@
-import googleLoginButton from '@/assets/images/googleLoginButton.svg';
-import kakaoLoginButton from '@/assets/images/kakaoLoginButton.svg';
+import googleLoginButton from '@/assets/images/google-login-button.svg';
+import kakaoLoginButton from '@/assets/images/kakao-login-button.svg';
 import { Button } from '@/components/common/button/button';
 import { KAKAO_URL, GOOGLE_URL, URL } from '@/constants/api';
 import { KAKAO_CLIENT_ID, GOOGLE_CLIENT_ID } from '@/constants/oauth-login';
