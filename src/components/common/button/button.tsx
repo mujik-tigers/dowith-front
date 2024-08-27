@@ -20,7 +20,6 @@ const BG_COLOR_CLASSES = {
 
 export const Button: React.FC<{
   children: React.ReactNode;
-  className?: string;
   size?: keyof typeof SIZE_CLASSES;
   bgColor?: keyof typeof BG_COLOR_CLASSES;
   onClick?: () => void;
