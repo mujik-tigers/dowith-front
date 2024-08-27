@@ -11,14 +11,18 @@ export default {
   ],
   prefix: '',
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
+    // container: {
+    //   center: true,
+    //   padding: '2rem',
+    //   screens: {
+    //     '2xl': '1400px',
+    //   },
+    // },
     extend: {
+      screens: {
+        lg: { min: '768px', max: '1279px' },
+        md: { max: '767px' },
+      },
       fontSize: {
         XB32: [
           '2rem', // 32px
