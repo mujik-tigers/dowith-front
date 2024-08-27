@@ -14,7 +14,7 @@ type TUserAppStore = {
   clearUserData: () => void;
 };
 
-const useUserAppStore = create<TUserAppStore>()(
+export const useUserAppStore = create<TUserAppStore>()(
   persist(
     (set) => ({
       userData: {
