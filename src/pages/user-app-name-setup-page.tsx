@@ -9,7 +9,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useUpdateUserAppName } from '@/hooks/queries/use-update-user-app-name';
-import { useUserAppStore } from '@/store/auth/use-user-store';
+import { useUserAppName } from '@/store/auth/use-user-store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -25,12 +25,12 @@ const formSchema = z.object({
 });
 
 export const UserAppNameSetupPage = () => {
-  const { userData } = useUserAppStore();
+  const { userAppName } = useUserAppName();
 
   /** TODO
    *  userData가 없으면 로그인 페이지, firstTime이 false일 경우는 홈
    * */
-  console.log(userData);
+  console.log(userAppName);
   const { mutate: updateUserAppName } = useUpdateUserAppName();
 
   const navigate = useNavigate();
