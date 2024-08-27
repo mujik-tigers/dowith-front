@@ -20,6 +20,7 @@ export default {
     // },
     extend: {
       screens: {
+        xl: { min: '1280px' },
         lg: { min: '768px', max: '1279px' },
         md: { max: '767px' },
       },
