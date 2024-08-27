@@ -25,7 +25,7 @@ const formSchema = z.object({
 });
 
 export const UserAppNameSetupPage = () => {
-  const { userAppName } = useUserAppName();
+  const userAppName = useUserAppName();
 
   /** TODO
    *  userData가 없으면 로그인 페이지, firstTime이 false일 경우는 홈
