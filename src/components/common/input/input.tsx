@@ -1,7 +1,7 @@
 import { Input as TextInput } from '@/components/ui/input';
 import React, { forwardRef } from 'react';
 
-const inputTypeClasses = {
+const INPUT_TYPE_CLASSES = {
   outline:
     'rounded-lg bg-transparent text-M14 text-text placeholder:text-textWeak focus:bg-white focus:text-text focus:outline-line focus-visible:outline',
   ghost: '',
@@ -37,7 +37,7 @@ export const Input = forwardRef<
       <TextInput
         type="text"
         placeholder={placeholder}
-        className={`${inputTypeClasses[borderType]}`}
+        className={`${INPUT_TYPE_CLASSES[borderType]}`}
         disabled={disabled}
         icon={icon}
         iconAnimation={iconAnimation}
