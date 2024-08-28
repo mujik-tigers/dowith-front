@@ -2,10 +2,11 @@ import FileIcon from '@/assets/icons/file.svg?react';
 import HomeIcon from '@/assets/icons/home.svg?react';
 import PlusIcon from '@/assets/icons/plus.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
-import { Button } from '@/components/common/button/button';
 import { Input } from '@/components/common/input/input';
-import { SpaceDefaultList } from '@/components/space-list/space-default-list';
-import { SpaceSearchList } from '@/components/space-list/space-search-list';
+import { Tooltip } from '@/components/common/tooltip/tooltip';
+
+// import { SpaceDefaultList } from '@/components/space-list/space-default-list';
+// import { SpaceSearchList } from '@/components/space-list/space-search-list';
 
 export const HomePage = () => {
   return (
@@ -58,9 +59,16 @@ export const HomePage = () => {
           </div>
         </div>
         <div className="fixed bottom-5 right-4 flex w-full items-center justify-end gap-2">
-          <Button size="rounded" bgColor="white" onClick={() => {}}>
-            <PlusIcon className="size-14" />
-          </Button>
+          <Tooltip
+            triggerStyle="rounded"
+            contentStyle="default"
+            contentTextStyle="default"
+            delayDuration={0}
+            sideOffset={8}
+            trigger={<PlusIcon />}
+            content="새 스페이스 개설하기"
+            tooltipLocation="left"
+          />
         </div>
       </div>
     </div>
