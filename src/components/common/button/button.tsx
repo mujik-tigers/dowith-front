@@ -7,7 +7,6 @@ const SIZE_CLASSES = {
   fixedL: 'h-[48px] w-[184px] rounded-lg',
   flexibleM: 'h-[40px] w-full rounded-lg',
   flexibleL: 'h-[54px] w-full rounded-xl',
-  rounded: 'size-14 rounded-full border border-line p-3 hover:bg-white',
 } as const;
 
 const BG_COLOR_CLASSES = {
