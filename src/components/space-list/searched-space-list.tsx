@@ -1,14 +1,7 @@
 import DefulatSpaceProfile from '@/assets/icons/default-space-profile.svg';
 
-export const SpaceSearchList: React.FC<{
-  spaceData: {
-    id: number;
-    title: string;
-    image: string | null;
-    description: string;
-    currentPeople: number;
-    maxPeople: number;
-  }[];
+export const SearchedSpaceList: React.FC<{
+  spaceData: TSearchedSpaceData[];
 }> = ({ spaceData }) => {
   return (
     <ul className="flex w-full flex-col items-start gap-4 md:gap-2">

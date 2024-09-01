@@ -1,12 +1,8 @@
 import DefulatSpaceProfile from '@/assets/icons/default-space-profile.svg';
 
-export const SpaceDefaultList: React.FC<{
-  spaceData: {
-    id: number;
-    title: string;
-    image: string | null;
-  }[];
-}> = ({ spaceData }) => {
+export const JoinedSpaceList: React.FC<{ spaceData: TJoinedSpaceData[] }> = ({
+  spaceData,
+}) => {
   return (
     <ul className="flex w-full flex-col items-start gap-4 md:gap-2">
       {spaceData.map((space) => (
