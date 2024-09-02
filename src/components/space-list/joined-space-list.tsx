@@ -11,7 +11,7 @@ export const JoinedSpaceList: React.FC<{ spaceData: TJoinedSpaceData[] }> = ({
           key={space.id}
         >
           <div className="flex w-full justify-between">
-            <div className="flex min-w-72 items-center gap-2">
+            <div className="flex items-center gap-2">
               <img
                 src={space.image ? space.image : DefulatSpaceProfile}
                 alt="space profile"
@@ -21,6 +21,9 @@ export const JoinedSpaceList: React.FC<{ spaceData: TJoinedSpaceData[] }> = ({
                 {space.title}
               </span>
             </div>
+            <span className="text-B16 text-textWeak md:text-B12">
+              {space.currentPeople} / {space.maxPeople}
+            </span>
           </div>
         </li>
       ))}
