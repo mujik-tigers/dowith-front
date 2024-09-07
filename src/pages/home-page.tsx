@@ -4,17 +4,20 @@ import PlusIcon from '@/assets/icons/plus.svg?react';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import { Input } from '@/components/common/input/input';
 import { Tooltip } from '@/components/common/tooltip/tooltip';
+import { JoinedSpaceList } from '@/components/space-list/joined-space-list';
+import { useGetJoinedSpaceList } from '@/hooks/queries/use-get-joined-space-list';
 
-// import { SpaceDefaultList } from '@/components/space-list/space-default-list';
-// import { SpaceSearchList } from '@/components/space-list/space-search-list';
+// import { SearchedSpaceList } from '@/components/space-list/searched-space-list';
 
 export const HomePage = () => {
+  const { data: joinedSpaceList = [] } = useGetJoinedSpaceList();
+
   return (
     <div className="flex w-full flex-col items-start">
       <div className="flex items-center justify-between">header</div>
       <div>홈</div>
       <div className="flex w-full border-2 border-solid border-orange-100 md:flex-col">
-        <div className="flex flex-col items-start gap-5 border-2 border-solid border-emerald-100 p-5 md:gap-3">
+        <div className="flex grow flex-col items-start gap-5 border-2 border-solid border-emerald-100 p-5 md:gap-3 lg:max-w-[500px] xl:max-w-[500px]">
           <div className="flex w-full flex-col items-start gap-2">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center gap-2">
@@ -37,7 +40,7 @@ export const HomePage = () => {
               스페이스를 클릭하면 해당 스페이스 홈으로 이동합니다.
             </span>
           </div>
-          {/* <SpaceDefaultList /> */}
+          <JoinedSpaceList spaceData={joinedSpaceList} />
         </div>
         <div className="flex grow flex-col items-start justify-between">
           <div className="flex w-full flex-col items-start gap-5 border-2 border-solid border-red p-5 md:gap-3">
@@ -55,7 +58,7 @@ export const HomePage = () => {
                 />
               </div>
             </div>
-            {/* <SpaceSearchList /> */}
+            {/* <SearchedSpaceList /> */}
           </div>
         </div>
         <div className="fixed bottom-5 right-4 flex w-full items-center justify-end gap-2">
