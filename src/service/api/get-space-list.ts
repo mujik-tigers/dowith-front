@@ -1,7 +1,14 @@
 import { privateApi } from '../axios';
 
-export const getJoinedSpaceList = async (): Promise<TJoinedSpaceData[]> => {
-  const response = await privateApi.get<TJoinedSpaceData[]>('/members/teams');
+type TJoinedSpaceDataResponse = {
+  data: {
+    teamOutlineList: TJoinedSpaceData[];
+  };
+};
 
-  return response.data;
+export const getJoinedSpaceList = async (): Promise<TJoinedSpaceData[]> => {
+  const response =
+    await privateApi.get<TJoinedSpaceDataResponse>('/members/teams');
+
+  return response.data.data.teamOutlineList;
 };

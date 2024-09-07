@@ -22,6 +22,13 @@ export const getJoinedSpacesHandler = http.get(
       });
     }
 
-    return HttpResponse.json(userJoinedSpaces, { status: 200 });
+    return HttpResponse.json(
+      {
+        data: {
+          teamOutlineList: userJoinedSpaces,
+        },
+      },
+      { status: 200 }
+    );
   }
 );
