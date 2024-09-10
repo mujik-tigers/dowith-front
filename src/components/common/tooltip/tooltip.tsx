@@ -7,18 +7,18 @@ import {
   TooltipPortal,
 } from '@/components/ui/tooltip';
 import React from 'react';
+import tw from 'twin.macro';
 
 const TRIGGER_STYLE_CLASSES = {
-  rounded:
-    'flex size-14 items-center justify-center rounded-full border border-line hover:bg-white',
+  rounded: tw`flex size-14 items-center justify-center rounded-full border border-line hover:bg-white`,
 } as const;
 
 const CONTENT_SHAPE_CLASSES = {
-  default: `bg-black border rounded relative py-2 px-4`,
+  default: tw`relative rounded border bg-black px-4 py-2`,
 } as const;
 
 const CONTENT_TEXT_STYLE_CLASSES = {
-  default: 'text-M16 text-white',
+  default: tw`text-M16 text-white`,
 } as const;
 
 export const Tooltip: React.FC<{
@@ -43,16 +43,16 @@ export const Tooltip: React.FC<{
   return (
     <TooltipProvider>
       <TooltipRoot delayDuration={delayDuration}>
-        <TooltipTrigger className={`${TRIGGER_STYLE_CLASSES[triggerStyle]}`}>
+        <TooltipTrigger css={TRIGGER_STYLE_CLASSES[triggerStyle]}>
           {trigger}
         </TooltipTrigger>
         <TooltipPortal>
           <TooltipContent
             side={tooltipLocation}
             sideOffset={sideOffset}
-            className={`${CONTENT_SHAPE_CLASSES[contentStyle]}`}
+            css={CONTENT_SHAPE_CLASSES[contentStyle]}
           >
-            <span className={`${CONTENT_TEXT_STYLE_CLASSES[contentTextStyle]}`}>
+            <span css={CONTENT_TEXT_STYLE_CLASSES[contentTextStyle]}>
               {content}
             </span>
             <TooltipArrow className="size-2.5 fill-black" />
