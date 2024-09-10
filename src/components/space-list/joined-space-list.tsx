@@ -1,32 +1,35 @@
 import DefulatSpaceProfile from '@/assets/icons/default-space-profile.svg';
+import tw from 'twin.macro';
 
 export const JoinedSpaceList: React.FC<{ spaceData: TJoinedSpaceData[] }> = ({
   spaceData,
 }) => {
   return (
-    <ul className="flex w-full flex-col items-start gap-4 md:gap-2">
+    <SpaceList>
       {spaceData.map((space) => (
-        <li
-          className="flex h-8 w-full cursor-pointer items-center justify-between"
-          key={space.id}
-        >
-          <div className="flex w-full justify-between">
-            <div className="flex items-center gap-2">
-              <img
+        <SpaceListItem key={space.id}>
+          <SpaceContentWrapper>
+            <ImageTitleWrapper>
+              <SpaceImage
                 src={space.image ? space.image : DefulatSpaceProfile}
                 alt="space profile"
-                className="size-8 md:size-6"
               />
-              <span className={`text-M14 text-text md:text-M12`}>
-                {space.title}
-              </span>
-            </div>
-            <span className="text-B16 text-textWeak md:text-B12">
+              <SpaceTitle>{space.title}</SpaceTitle>
+            </ImageTitleWrapper>
+            <SpaceParticipants>
               {space.currentPeople} / {space.maxPeople}
-            </span>
-          </div>
-        </li>
+            </SpaceParticipants>
+          </SpaceContentWrapper>
+        </SpaceListItem>
       ))}
-    </ul>
+    </SpaceList>
   );
 };
+
+const SpaceList = tw.ul`flex w-full flex-col items-start gap-4 md:gap-2`;
+const SpaceListItem = tw.li`flex h-8 w-full cursor-pointer items-center justify-between`;
+const SpaceContentWrapper = tw.div`flex w-full justify-between`;
+const ImageTitleWrapper = tw.div`flex items-center gap-2`;
+const SpaceImage = tw.img`size-8 md:size-6`;
+const SpaceTitle = tw.span`text-M14 text-text md:text-M12`;
+const SpaceParticipants = tw.span`text-B16 text-textWeak md:text-B12`;
