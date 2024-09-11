@@ -10,7 +10,7 @@ import React from 'react';
 import tw from 'twin.macro';
 
 const TRIGGER_STYLE_CLASSES = {
-  rounded: tw`flex size-14 items-center justify-center rounded-full border border-line hover:bg-white`,
+  rounded: tw`flex h-14 w-14 items-center justify-center rounded-full border border-line hover:bg-white`,
 } as const;
 
 const CONTENT_SHAPE_CLASSES = {

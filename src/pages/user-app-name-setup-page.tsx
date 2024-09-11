@@ -14,6 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
+import tw from 'twin.macro';
 
 const formSchema = z.object({
   newName: z
@@ -60,11 +61,11 @@ export const UserAppNameSetupPage = () => {
   }
 
   return (
-    <div className="mx-auto flex h-full max-w-[300px] flex-col justify-center">
-      <div className="mb-10 flex flex-col gap-3">
-        <p className="text-XB20">환영합니다!</p>
-        <p className="text-M16">사용하실 닉네임을 정해주세요.</p>
-      </div>
+    <PageWrapper>
+      <WelcomeMessageWrapper>
+        <WelcomeTitle>환영합니다!</WelcomeTitle>
+        <WelcomeDescription>사용하실 닉네임을 정해주세요.</WelcomeDescription>
+      </WelcomeMessageWrapper>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -83,14 +84,14 @@ export const UserAppNameSetupPage = () => {
                 {form.formState.errors.newName ? (
                   <FormMessage className="pl-2 text-red" />
                 ) : (
-                  <FormDescription className="pl-2 text-textWeak">
+                  <FormDescription className=" text-textWeak pl-2">
                     닉네임 변경은 프로필 설정에서도 가능합니다.
                   </FormDescription>
                 )}
               </FormItem>
             )}
           />
-          <div className="mt-16 flex gap-2">
+          <ButtonWrapper>
             <Button
               size="flexibleM"
               bgColor="white"
@@ -104,9 +105,15 @@ export const UserAppNameSetupPage = () => {
             <Button size="flexibleM" bgColor="blue" type="submit">
               시작하기
             </Button>
-          </div>
+          </ButtonWrapper>
         </form>
       </Form>
-    </div>
+    </PageWrapper>
   );
 };
+
+const PageWrapper = tw.div`mx-auto flex h-full flex-col justify-center max-w-[300px]`;
+const WelcomeMessageWrapper = tw.div`mb-10 flex flex-col gap-3`;
+const WelcomeTitle = tw.p`text-XB20`;
+const WelcomeDescription = tw.p`text-M16`;
+const ButtonWrapper = tw.div`mt-16 flex gap-2`;

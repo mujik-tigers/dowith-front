@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import tw, { styled } from 'twin.macro';
 
 const SIZE_CLASSES = {
-  fixedS: tw`h-[36px] w-[72px] rounded-md`,
-  fixedM: tw`h-[40px] w-[160px] rounded-lg`,
-  fixedL: tw`h-[48px] w-[184px] rounded-lg`,
-  flexibleM: tw`h-[40px] w-full rounded-lg`,
-  flexibleL: tw`h-[54px] w-full rounded-xl`,
+  fixedS: tw`rounded-md h-[36px] w-[72px]`,
+  fixedM: tw`rounded-lg h-[40px] w-[160px]`,
+  fixedL: tw`rounded-lg h-[48px] w-[184px]`,
+  flexibleM: tw`w-full rounded-lg h-[40px]`,
+  flexibleL: tw`w-full rounded-xl h-[54px]`,
 } as const;
 
 const BG_COLOR_CLASSES = {
@@ -15,7 +15,7 @@ const BG_COLOR_CLASSES = {
   yellow: tw`bg-yellow text-text hover:bg-yellow/90`,
   white: tw`border border-line bg-white text-text hover:bg-white/90`,
   black: tw`bg-black text-white hover:bg-black/90`,
-  blue: tw`bg-blueLight text-text hover:bg-blueLight/90 `,
+  blue: tw`bg-blueLight text-text hover:bg-blueLight/90`,
 } as const;
 
 const MotionButton = styled(motion(UIButton))`

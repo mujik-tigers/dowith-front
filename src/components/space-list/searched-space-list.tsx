@@ -31,11 +31,11 @@ export const SearchedSpaceList: React.FC<{
 };
 
 const SpaceList = tw.ul`flex w-full flex-col items-start gap-4 md:gap-2`;
-const SpaceListItem = tw.li`flex w-full items-center md:flex-col lg:flex-col lg:gap-2`;
+const SpaceListItem = tw.li`flex w-full items-center md:flex-col lg:(flex-col gap-2)`;
 const SpaceContentWrapper = tw.div`flex w-full justify-between`;
-const ImageTitleWrapper = tw.div`flex min-w-72 items-center gap-2 md:min-w-56`;
-const SpaceImage = tw.img`size-8 md:size-6`;
+const ImageTitleWrapper = tw.div`flex items-center gap-2 min-w-[18rem] md:min-w-[14rem]`;
+const SpaceImage = tw.img`h-8 w-8 md:(h-6 w-6)`;
 const SpaceTitle = tw.span`text-M14 text-text md:text-M12`;
 const SpaceParticipants = tw.span`text-B16 text-textWeak md:text-B12`;
-const SpaceDescriptionWithLg = tw.span`text-M16 text-textWeak md:hidden md:text-M12 lg:hidden`;
-const SpaceDescriptionWithMd = tw.span`hidden w-full items-start text-M16 text-textWeak md:flex md:text-M12 lg:flex`;
+const SpaceDescriptionWithLg = tw.span`text-M16 text-textWeak md:(hidden text-M12) lg:hidden`;
+const SpaceDescriptionWithMd = tw.span`hidden w-full items-start text-M16 text-textWeak md:(flex text-M12) lg:flex`;
