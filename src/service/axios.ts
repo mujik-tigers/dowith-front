@@ -16,29 +16,22 @@ export const privateApi = axios.create({
   },
 });
 
-privateApi.interceptors.request.use(
-  (config) => {
-    const { userData } = useUserAppStore.getState();
-    const accessToken = userData.accessToken;
+privateApi.interceptors.request.use((config) => {
+  const { userData } = useUserAppStore.getState();
+  const accessToken = userData.accessToken;
 
-    if (accessToken) {
-      config.headers['Authorization'] = `Bearer ${accessToken}`;
-    } else {
-      // accessToken이 없을 때,
-      // 모달 및 로그인 페이지로 이동 필요
-      // window.location.href = '/login';
-      console.log('여기', config);
+  if (accessToken) {
+    config.headers['Authorization'] = `Bearer ${accessToken}`;
+  } else {
+    // accessToken이 없을 때,
+    // 모달 및 로그인 페이지로 이동 필요
+    // window.location.href = '/login';
+    // console.log('여기', config);
 
-      return Promise.reject(
-        new Error('No access token, redirecting to login.')
-      );
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
+    return Promise.reject(new Error('No access token, redirecting to login.'));
   }
-);
+  return config;
+});
 
 privateApi.interceptors.response.use(
   (response) => response,
