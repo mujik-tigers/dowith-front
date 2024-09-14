@@ -8,16 +8,36 @@ import { JoinedSpaceList } from '@/components/space-list/joined-space-list';
 import { useGetJoinedSpaceList } from '@/hooks/queries/use-get-joined-space-list';
 import { MAX_SPACES_PER_USER } from '@/constants/space';
 import tw from 'twin.macro';
+import Logo from '@/assets/images/img_log_small.png';
+import { Header } from '@/components/common/header/Header';
+import { HeaderM } from '@/components/common/header/HeaderM';
+import { useUserAppStore } from '@/store/auth/use-user-store';
+import Avatar from 'boring-avatars';
+
 
 // import { SearchedSpaceList } from '@/components/space-list/searched-space-list';
 
 export const HomePage = () => {
+  const { userData } = useUserAppStore();
   const { data: joinedSpaceList = [] } = useGetJoinedSpaceList();
 
   return (
     <div className="flex w-full flex-col items-start">
-      <div className="flex items-center justify-between">header</div>
-      <div>홈</div>
+       <Header
+        userCode={userData.userCode!}
+        userAppName={userData.userAppName!}
+      />
+      <HeaderM>
+        <HeaderM.Left>
+          <img src={Logo} alt="do-with 로고" />
+        </HeaderM.Left>
+        <HeaderM.Center>
+          <p className="text-XB24 tracking-tighter">dowith</p>
+        </HeaderM.Center>
+        <HeaderM.Right>
+          <Avatar name={userData.userCode!} variant="beam" size={40} />
+        </HeaderM.Right>
+      </HeaderM>
       <ContentWrapper>
         <JoinedSpaceSection>
           <JoinedSpaceSectionHeader>
