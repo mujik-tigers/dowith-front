@@ -50,7 +50,7 @@ export const HomePage = () => {
                 </JoinedSpaceCount>
               </JoinedSpaceTitleWrapper>
               <WaitingSpaceDropdownButton>
-                <FileIcon className="size-7" />
+                <FileIcon className="size-7 md:size-6" />
                 <WaitingSpaceCountWrapper>
                   {/* 참여 대기중 목록의 길이(개수) 표시 */}
                   <WaitingSpaceCount>1</WaitingSpaceCount>
@@ -69,7 +69,7 @@ export const HomePage = () => {
           <SearchedSpaceContent>
             <SearchedSpaceHeader>
               <TitleAndIconWrapper>
-                <SearchIcon className="size-7 md:size-6" />
+                <SearchIcon className="size-7" />
                 <SearchedSpaceTitle>스페이스 탐색</SearchedSpaceTitle>
               </TitleAndIconWrapper>
               <InputWrapper>
@@ -108,8 +108,8 @@ const JoinedSpaceTitleWrapper = tw.div`flex items-center gap-2`;
 const JoinedSpaceTitle = tw.span`pt-1 text-B20 text-title md:text-B16`;
 const JoinedSpaceCount = tw.span`pt-1`;
 const WaitingSpaceDropdownButton = tw.button`relative flex h-10 w-10 items-center justify-center rounded-md border border-line p-2 md:(h-8 w-8)`;
-const WaitingSpaceCountWrapper = tw.div`absolute left-7 flex items-center justify-center rounded-full border border-line bg-white p-1 top-[-10px] md:(h-4 w-4)`;
-const WaitingSpaceCount = tw.span`text-B12 text-red`;
+const WaitingSpaceCountWrapper = tw.div`absolute left-7 flex h-5 w-5 items-center justify-center rounded-full border border-line bg-white p-1 top-[-10px] md:(left-5 h-4 w-4 top-[-8px])`;
+const WaitingSpaceCount = tw.span`text-B12 text-red md:text-M10`;
 const JoinedSpaceDescription = tw.span`inline-block truncate text-M14 text-textWeak md:text-M10`;
 
 const SearchedSpaceSection = tw.div`flex grow flex-col items-start justify-between`;
