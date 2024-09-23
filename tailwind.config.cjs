@@ -1,7 +1,8 @@
-import tailwindcssAnimate from 'tailwindcss-animate';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const tailwindcssAnimate = require('tailwindcss-animate');
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -11,14 +12,12 @@ export default {
   ],
   prefix: '',
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
     extend: {
+      screens: {
+        xl: { min: '1280px' },
+        lg: { min: '768px', max: '1279px' },
+        md: { max: '767px' },
+      },
       fontSize: {
         XB32: [
           '2rem', // 32px
@@ -105,9 +104,7 @@ export default {
           },
         ],
       },
-
       colors: {
-        /* custom styles */
         black: '#212529',
         dim: 'rgba(33, 37, 41, 0.63)',
         white: '#FAFAFA',
@@ -127,8 +124,6 @@ export default {
         yelloLight: '#ffd2b3',
         orangeLight: '#ffd4a9',
         blueLight: '#d1eaed',
-
-        /* shadcn styles */
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

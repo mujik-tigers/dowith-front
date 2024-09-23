@@ -12,7 +12,8 @@
 
   "plugins": [
     "@trivago/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss"
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-twin.macro"
   ],
   "importOrder": [
     "<THIRD_PARTY_MODULES>",

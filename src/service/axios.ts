@@ -16,34 +16,22 @@ export const privateApi = axios.create({
   },
 });
 
-publicApi.interceptors.request.use((error) => {
-  console.log('publicApi error', error);
+privateApi.interceptors.request.use((config) => {
+  const { userData } = useUserAppStore.getState();
+  const accessToken = userData.accessToken;
 
-  return Promise.reject(error);
-});
+  if (accessToken) {
+    config.headers['Authorization'] = `Bearer ${accessToken}`;
+  } else {
+    // accessToken이 없을 때,
+    // 모달 및 로그인 페이지로 이동 필요
+    // window.location.href = '/login';
+    // console.log('여기', config);
 
-privateApi.interceptors.request.use(
-  (config) => {
-    const { userData } = useUserAppStore.getState();
-    const accessToken = userData.accessToken;
-
-    if (accessToken) {
-      config.headers['Authorization'] = `Bearer ${accessToken}`;
-    } else {
-      // window.location.href = '/login';
-      console.log(config);
-
-      return Promise.reject(
-        new Error('No access token, redirecting to login.')
-      );
-    }
-    return config;
-  },
-
-  (error) => {
-    return Promise.reject(error);
+    return Promise.reject(new Error('No access token, redirecting to login.'));
   }
-);
+  return config;
+});
 
 privateApi.interceptors.response.use(
   (response) => response,
@@ -60,12 +48,18 @@ privateApi.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshResponse = await publicApi.post('/refresh', {
-          refreshToken: userData.refreshToken,
-        });
+        const refreshResponse = await publicApi.patch(
+          '/refresh',
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${userData.refreshToken}`,
+            },
+          }
+        );
 
         const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-          refreshResponse.data;
+          refreshResponse.data.data;
 
         setUserData({
           accessToken: newAccessToken,
@@ -78,15 +72,15 @@ privateApi.interceptors.response.use(
 
         return privateApi(originalRequest);
       } catch (refreshError) {
+        // 리프래시 토큰까지 만료되었을 때
         console.error('Refresh token failed:', refreshError);
         clearUserData();
         // window.location.href = '/login';
         return Promise.reject(refreshError);
       }
     }
-
-    clearUserData();
-    // window.location.href = '/login';
+    // accessToken 정상적으로 동작하지만, 그 외의 에러가 발생한 경우
+    // 에러가 발생한 부분에서 각자 처리 필요
     return Promise.reject(error);
   }
 );

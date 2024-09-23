@@ -1,8 +1,9 @@
-import googleLoginButton from '@/assets/images/googleLoginButton.svg';
-import kakaoLoginButton from '@/assets/images/kakaoLoginButton.svg';
+import googleLoginButton from '@/assets/images/google-login-button.svg';
+import kakaoLoginButton from '@/assets/images/kakao-login-button.svg';
 import { Button } from '@/components/common/button/button';
 import { KAKAO_URL, GOOGLE_URL, URL } from '@/constants/api';
 import { KAKAO_CLIENT_ID, GOOGLE_CLIENT_ID } from '@/constants/oauth-login';
+import tw from 'twin.macro';
 
 export const LoginPage = () => {
   const kakaoLoginButtonHandler = () => {
@@ -16,35 +17,32 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="flex h-[308px] w-[320px] flex-col items-center gap-10 px-2.5">
-        <div className="flex h-[140px] w-[204px] flex-col items-center gap-4">
-          <div className="flex h-[128px] w-[300px] flex-col items-start gap-5">
-            <Button
-              size="flexibleL"
-              bgColor="yellow"
-              onClick={kakaoLoginButtonHandler}
-            >
-              <img
-                src={kakaoLoginButton}
-                alt="kakaoLoginButton"
-                className="max-w-none"
-              />
-            </Button>
-            <Button
-              size="flexibleL"
-              bgColor="white"
-              onClick={googleLoginButtonHandler}
-            >
-              <img
-                src={googleLoginButton}
-                alt="googleLoginButton"
-                className="max-w-none"
-              />
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <LoginPageWrapper>
+      <LoginPageContent>
+        <LogoWrapper></LogoWrapper>
+        <LoginButtonWrapper>
+          <Button
+            size="flexibleL"
+            bgColor="yellow"
+            onClick={kakaoLoginButtonHandler}
+          >
+            <LoginButtonImage src={kakaoLoginButton} alt="kakaoLoginButton" />
+          </Button>
+          <Button
+            size="flexibleL"
+            bgColor="white"
+            onClick={googleLoginButtonHandler}
+          >
+            <LoginButtonImage src={googleLoginButton} alt="googleLoginButton" />
+          </Button>
+        </LoginButtonWrapper>
+      </LoginPageContent>
+    </LoginPageWrapper>
   );
 };
+
+const LoginPageWrapper = tw.div`absolute inset-0 flex items-center justify-center`;
+const LoginPageContent = tw.div`flex flex-col items-center gap-10 px-2.5 h-[308px] w-[320px]`;
+const LogoWrapper = tw.div`flex flex-col items-center gap-4 h-[140px] w-[204px]`;
+const LoginButtonWrapper = tw.div`flex flex-col items-start gap-5 h-[128px] w-[300px]`;
+const LoginButtonImage = tw.img`max-w-none`;

@@ -1,5 +1,5 @@
 import { useOauthLogin } from '@/hooks/queries/use-oauth-login';
-import { useUserAppStore } from '@/store/auth/use-user-store';
+import { useSetUserData } from '@/store/auth/use-user-store';
 import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ export const AuthRedirectPage = () => {
     stateParam && JSON.parse(decodeURIComponent(stateParam)).oauthType;
 
   const { mutate: login } = useOauthLogin();
-  const { setUserData } = useUserAppStore();
+  const setUserData = useSetUserData();
 
   useEffect(() => {
     if (authorizationCode && oauthType) {
