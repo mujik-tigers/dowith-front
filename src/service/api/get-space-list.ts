@@ -7,8 +7,12 @@ type TJoinedSpaceDataResponse = {
 };
 
 export const getJoinedSpaceList = async (): Promise<TJoinedSpaceData[]> => {
-  const response =
-    await privateApi.get<TJoinedSpaceDataResponse>('/members/teams');
+  try {
+    const response =
+      await privateApi.get<TJoinedSpaceDataResponse>('/members/teams');
 
-  return response.data.data.teamOutlineList;
+    return response.data.data.teamOutlineList;
+  } catch (error) {
+    throw new Error('참여중인 스페이스 목록을 불러오는데 실패하였습니다.');
+  }
 };
