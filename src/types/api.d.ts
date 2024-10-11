@@ -4,5 +4,3 @@ type TApiResponse<T> = {
   result: string;
   data: T;
 };
-
-type TLoginResponse = TApiResponse<TLoginResponseData>;
