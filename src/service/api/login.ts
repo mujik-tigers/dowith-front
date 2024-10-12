@@ -7,7 +7,7 @@ export const login = async ({
 }: {
   authorizationCode: string;
   oauthType: string;
-}): Promise<TLoginResponse> => {
+}): Promise<TLoginResponseData> => {
   try {
     const response = await axios.post<TLoginResponse>(
       `${API_URL}/oauth/${oauthType}?authorizationCode=${authorizationCode}`,
@@ -18,7 +18,7 @@ export const login = async ({
         },
       }
     );
-    return response.data;
+    return response.data.data;
   } catch (error) {
     throw new Error('로그인에 실패하였습니다. 잠시 후 다시 시도해주세요.');
   }
