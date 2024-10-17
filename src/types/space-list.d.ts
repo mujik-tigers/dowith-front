@@ -6,15 +6,21 @@ type TJoinedSpaceData = {
   maxPeople: number;
 };
 
+type TJoinedSpaceResponseData = {
+  data: {
+    teamOutlines: Array<TJoinedSpaceData>;
+  };
+};
+
+type TSearchedSpaceData = {
+  description: string;
+} & TJoinedSpaceData;
+
 type TSearchedSpaceListResponseData = {
   hasMore: boolean;
   lastUnixTimestamp: number;
-  lastTieBreakerId: string;
-  teamOutlineList: Array<
-    {
-      description: string;
-    } & TJoinedSpaceData
-  >;
+  lastTieBreakerId: number;
+  teamDocumentOutlines: Array<TSearchedSpaceData>;
 };
 
 type TSearchedSpacelistResponse = TApiResponse<TSearchedSpaceListResponseData>;

@@ -11,7 +11,7 @@ export const useGetSearchedSpaceList = (
       queryFn: ({
         pageParam = {
           lastUnixTimestamp: 0,
-          lastTieBreakerId: '0',
+          lastTieBreakerId: 0,
         },
       }) =>
         getSearchedSpaceList(
@@ -20,7 +20,7 @@ export const useGetSearchedSpaceList = (
           pageParam.lastUnixTimestamp,
           pageParam.lastTieBreakerId
         ),
-      initialPageParam: { lastUnixTimestamp: 0, lastTieBreakerId: '0' },
+      initialPageParam: { lastUnixTimestamp: 0, lastTieBreakerId: 0 },
       getNextPageParam: ({ hasMore, lastUnixTimestamp, lastTieBreakerId }) =>
         hasMore ? { lastUnixTimestamp, lastTieBreakerId } : null,
       staleTime: 1000 * 60,
