@@ -10,7 +10,7 @@ env:
   CODE_DEPLOY_APPLICATION_NAME: dowith-front-code-deploy-application
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dowith-front-code-deploy-group
   S3_BUCKET_NAME: dowith-s3
-  S3_KEY: front-build/build.zip
+  S3_KEY: front-build/
 
 permissions:
   id-token: write
@@ -42,7 +42,7 @@ jobs:
 
       - name: Upload build folder to S3
         run: |
-          aws s3 sync ./build s3://${{ env.S3_BUCKET_NAME }}/front-build/ --delete
+          aws s3 sync ./dist s3://${{ env.S3_BUCKET_NAME }}/front-build/ --delete
 
       - name: Deploy to CodeDeploy
         run: |
@@ -50,4 +50,4 @@ jobs:
             --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
             --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=${{ env.S3_KEY }}
+            --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=${{ env.S3_KEY }},bundleType=directory
