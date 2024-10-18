@@ -10,7 +10,7 @@ env:
   CODE_DEPLOY_APPLICATION_NAME: dowith-front-code-deploy-application
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dowith-front-code-deploy-group
   S3_BUCKET_NAME: dowith-s3
-  S3_KEY: front-build/build.zip
+  S3_KEY: front-build/
 
 permissions:
   id-token: write
