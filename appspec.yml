@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: /front-build/
+  - source: /dist/
     destination: /var/www/html
 
 hooks:

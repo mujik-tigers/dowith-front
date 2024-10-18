@@ -34,8 +34,9 @@ jobs:
           npm install
           npm run build
 
-      - name: Zip build folder
-        run: zip -r build.zip ./dist
+      - name: Zip build folder with appspec.yml
+        run: |
+          zip -r build.zip ./dist appspec.yml
 
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v3
