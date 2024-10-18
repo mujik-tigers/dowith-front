@@ -6,12 +6,7 @@ files:
     destination: /var/www/html
 
 hooks:
-  BeforeInstall:
-    - run: |
-        sudo rm -rf /var/www/html/*
-        echo "Old files removed."
   AfterInstall:
-    - run: |
-        sudo systemctl restart nginx.service
+    - location: scripts/restart_nginx.sh
       timeout: 300
       runas: root
