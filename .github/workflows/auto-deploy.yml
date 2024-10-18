@@ -9,6 +9,8 @@ env:
   AWS_REGION: ap-northeast-2
   CODE_DEPLOY_APPLICATION_NAME: dowith-front-code-deploy-application
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dowith-front-code-deploy-group
+  S3_BUCKET_NAME: dowith-s3
+  S3_KEY: front-build/build.zip
 
 permissions:
   id-token: write
@@ -25,7 +27,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '19.8.1'
 
       - name: Install dependencies and build
         run: |
@@ -38,10 +40,14 @@ jobs:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Deploy to CodeDeploy from GitHub
+      - name: Upload build folder to S3
+        run: |
+          aws s3 sync ./build s3://${{ env.S3_BUCKET_NAME }}/front-build/ --delete
+
+      - name: Deploy to CodeDeploy
         run: |
           aws deploy create-deployment \
             --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
             --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+            --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=${{ env.S3_KEY }}
