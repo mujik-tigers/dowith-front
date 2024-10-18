@@ -53,4 +53,4 @@ jobs:
             --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
             --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=${{ env.S3_KEY }}
+            --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=${{ env.S3_KEY }},bundleType=zip
