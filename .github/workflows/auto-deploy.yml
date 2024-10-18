@@ -45,7 +45,7 @@ jobs:
 
       - name: Upload build zip to S3
         run: |
-          aws s3 cp build.zip s3://${{ env.S3_BUCKET_NAME }}/front-build/build.zip --delete
+          aws s3 cp build.zip s3://${{ env.S3_BUCKET_NAME }}/front-build/build.zip
 
       - name: Deploy to CodeDeploy
         run: |
@@ -53,4 +53,4 @@ jobs:
             --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
             --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=${{ env.S3_KEY }},bundleType=directory
+            --s3-location bucket=${{ env.S3_BUCKET_NAME }},key=${{ env.S3_KEY }}
