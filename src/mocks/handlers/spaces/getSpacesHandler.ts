@@ -25,7 +25,7 @@ export const getJoinedSpacesHandler = http.get(
     return HttpResponse.json(
       {
         data: {
-          teamOutlineList: userJoinedSpaces,
+          teamOutlines: userJoinedSpaces,
         },
       },
       { status: 200 }
