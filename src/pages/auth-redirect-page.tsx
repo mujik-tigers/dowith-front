@@ -20,7 +20,7 @@ export const AuthRedirectPage = () => {
         { authorizationCode, oauthType },
         {
           onSuccess: (data) => {
-            const { code, name, accessToken, refreshToken } = data.data;
+            const { code, name, accessToken, refreshToken } = data;
             setUserData({
               userCode: code,
               userAppName: name,

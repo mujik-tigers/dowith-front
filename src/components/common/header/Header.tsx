@@ -1,6 +1,7 @@
 import Logo from '@/assets/images/img_log_small.png';
 import Avatar from 'boring-avatars';
 import { useNavigate } from 'react-router-dom';
+import tw from 'twin.macro';
 
 export const Header: React.FC<{
   userCode: string;
@@ -9,19 +10,22 @@ export const Header: React.FC<{
   const navigate = useNavigate();
 
   return (
-    <header className="flex justify-between px-4 py-2">
-      <div
-        className="flex items-center gap-[6px]"
-        onClick={() => navigate('/')}
-      >
+    <HeaderSection>
+      <LogoWrapper onClick={() => navigate('/')}>
         <img src={Logo} alt="do-with 로고" />
-        <p className="text-XB24 tracking-tighter">dowith</p>
-      </div>
+        <LogoTitle>dowith</LogoTitle>
+      </LogoWrapper>
 
-      <div className="flex items-center gap-2">
+      <AvatarWrapper>
         <Avatar name={userCode} variant="beam" size={40} />
-        <p className="text-M16">{userAppName}</p>
-      </div>
-    </header>
+        <UserInfo>{userAppName}</UserInfo>
+      </AvatarWrapper>
+    </HeaderSection>
   );
 };
+
+const HeaderSection = tw.header`flex w-full justify-between px-4 py-2`;
+const LogoWrapper = tw.div`flex items-center gap-[6px]`;
+const LogoTitle = tw.p`text-XB24 tracking-tighter`;
+const AvatarWrapper = tw.div`flex items-center gap-2`;
+const UserInfo = tw.p`text-M16`;

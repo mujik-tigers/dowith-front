@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import tw from 'twin.macro';
 
 export const HeaderM: React.FC<{ children: ReactNode }> & {
   Left: React.FC<{ children: ReactNode }>;
@@ -13,19 +14,22 @@ export const HeaderM: React.FC<{ children: ReactNode }> & {
 };
 
 HeaderM.Left = ({ children }) => {
-  return <div className="flex items-center">{children}</div>;
+  return <Wrapper className="flex items-center">{children}</Wrapper>;
 };
 
 HeaderM.Center = ({ children }) => {
   return (
-    <div className="flex items-center">
-      <div className="absolute left-1/2 -translate-x-1/2 transform">
+    <Wrapper>
+      <TitleWrapper className="absolute left-1/2 -translate-x-1/2 transform">
         {children}
-      </div>
-    </div>
+      </TitleWrapper>
+    </Wrapper>
   );
 };
 
 HeaderM.Right = ({ children }) => {
-  return <div className="flex items-center">{children}</div>;
+  return <Wrapper>{children}</Wrapper>;
 };
+
+const Wrapper = tw.div`flex items-center`;
+const TitleWrapper = tw.div`absolute left-1/2 -translate-x-1/2 transform`;
