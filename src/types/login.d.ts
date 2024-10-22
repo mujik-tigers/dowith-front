@@ -5,3 +5,5 @@ type TLoginResponseData = {
   accessToken: string;
   refreshToken: string;
 };
+
+type TLoginResponse = TApiResponse<TLoginResponseData>;
