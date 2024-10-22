@@ -11,6 +11,11 @@ env:
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dowith-front-code-deploy-group
   S3_BUCKET_NAME: dowith-s3
   S3_KEY: front-build/build.zip
+  VITE_APP_BASE_API_URL: ${{ secrets.VITE_APP_BASE_API_URL }}
+  VITE_APP_DEV_URL: ${{ secrets.VITE_APP_DEV_URL }}
+  VITE_APP_PROD_URL: ${{ secrets.VITE_APP_PROD_URL }}
+  VITE_APP_KAKAO_API_CLIENT_ID: ${{ secrets.VITE_APP_KAKAO_API_CLIENT_ID }}
+  VITE_APP_GOOGLE_API_CLIENT_ID: ${{ secrets.VITE_APP_GOOGLE_API_CLIENT_ID }}
 
 permissions:
   id-token: write
