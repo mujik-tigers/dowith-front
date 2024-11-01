@@ -14,8 +14,7 @@ import { HeaderM } from '@/components/common/header/HeaderM';
 import { useUserCode, useUserAppName } from '@/store/auth/use-user-store';
 import Avatar from 'boring-avatars';
 import { useMediaQuery } from '@/hooks/use-media-query';
-
-const MOBILE_MEDIAQUERY = '(max-width: 767px)';
+import { MOBILE_MEDIAQUERY } from '@/constants/media-query';
 
 export const HomePage = () => {
   const userCode = useUserCode();
@@ -25,8 +24,10 @@ export const HomePage = () => {
 
   return (
     <div className="flex w-full flex-col items-start">
-      {!isMobile && <Header userCode={userCode!} userAppName={userAppName!} />}
-      {isMobile && (
+      {!isMobile && userCode && userAppName && (
+        <Header userCode={userCode!} userAppName={userAppName!} />
+      )}
+      {isMobile && userCode && (
         <HeaderM>
           <HeaderM.Left>
             <img src={Logo} alt="do-with 로고" />
