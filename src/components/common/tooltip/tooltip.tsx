@@ -30,6 +30,7 @@ export const Tooltip: React.FC<{
   contentStyle: keyof typeof CONTENT_SHAPE_CLASSES;
   contentTextStyle: keyof typeof CONTENT_TEXT_STYLE_CLASSES;
   triggerStyle: keyof typeof TRIGGER_STYLE_CLASSES;
+  onTooltipClick?: () => void;
 }> = ({
   trigger,
   content,
@@ -39,11 +40,15 @@ export const Tooltip: React.FC<{
   contentStyle,
   contentTextStyle,
   tooltipLocation,
+  onTooltipClick,
 }) => {
   return (
     <TooltipProvider>
       <TooltipRoot delayDuration={delayDuration}>
-        <TooltipTrigger css={TRIGGER_STYLE_CLASSES[triggerStyle]}>
+        <TooltipTrigger
+          css={TRIGGER_STYLE_CLASSES[triggerStyle]}
+          onClick={onTooltipClick}
+        >
           {trigger}
         </TooltipTrigger>
         <TooltipPortal>
