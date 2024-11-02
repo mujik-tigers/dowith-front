@@ -1,25 +1,30 @@
 import { create } from 'zustand';
+import { TConfirmModalProps } from '@/components/common/modal/confirm-modal/confirm-modal';
 
 type TModalType = 'confirm' | 'form';
 
-type TModalState = {
-  confirm: boolean;
-  form: boolean;
+type TModalConfig = {
+  type: TModalType;
+  id: string;
+  props?: TConfirmModalProps; // alert, form 모달의 props 타입을 여기에 추가
 };
 
-// 상태만 관리하는 스토어
+type TModalState = {
+  modals: TModalConfig[];
+};
+
 export const useModalStore = create<TModalState>(() => ({
-  confirm: false,
-  form: false,
+  modals: [],
 }));
 
-// 상태를 변경하는 액션만 분리
-export const changeModalState = (type: TModalType) => {
-  useModalStore.setState((state) => ({ ...state, [type]: !state[type] }));
+export const openModal = (modal: TModalConfig) => {
+  useModalStore.setState((state) => ({
+    modals: [...state.modals, modal],
+  }));
 };
 
-// 상태 조회 훅
-export const useConfirmModalState = () =>
-  useModalStore((state) => state.confirm);
-
-export const useFormModalState = () => useModalStore((state) => state.form);
+export const closeModal = (id: string) => {
+  useModalStore.setState((state) => ({
+    modals: state.modals.filter((modal) => modal.id !== id),
+  }));
+};

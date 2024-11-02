@@ -8,26 +8,26 @@ import {
   DialogClose,
 } from '@/components/ui/dialog';
 import { Button } from '../../button/button';
-import {
-  useConfirmModalState,
-  changeModalState,
-} from '@/store/use-modal-store';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-export const ConfirmModal: React.FC<{
+export type TConfirmModalProps = {
   title: string;
   description: string;
   confirmButtonBgColor?: 'red' | 'black';
-  onConfirm?: () => void;
-}> = ({ title, description, confirmButtonBgColor, onConfirm }) => {
-  const confirmModalState = useConfirmModalState();
+  onConfirm: () => void;
+  onClose?: () => void;
+};
 
-  const handleCloseModal = () => {
-    changeModalState('confirm');
-  };
+export const ConfirmModal = ({
+  title,
+  description,
+  confirmButtonBgColor,
+  onConfirm,
+  onClose,
+}: TConfirmModalProps) => {
   return (
-    <Dialog open={confirmModalState} onOpenChange={handleCloseModal}>
+    <Dialog open={true} onOpenChange={onClose}>
       <ModalContent>
         <ModalHeader>
           <ModalTitle>{title}</ModalTitle>
@@ -37,7 +37,13 @@ export const ConfirmModal: React.FC<{
           <DialogClose asChild>
             <Button bgColor="white">취소</Button>
           </DialogClose>
-          <Button bgColor={confirmButtonBgColor} onClick={onConfirm}>
+          <Button
+            bgColor={confirmButtonBgColor}
+            onClick={() => {
+              onConfirm();
+              onClose && onClose();
+            }}
+          >
             확인
           </Button>
         </DialogFooter>
