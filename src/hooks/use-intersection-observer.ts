@@ -20,10 +20,16 @@ export const useIntersectionObserver = <T extends HTMLElement>({
   useEffect(() => {
     if (!enabled || !targetRef.current) return;
 
-    const observer: IntersectionObserver = new IntersectionObserver(
-      onIntersect,
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            onIntersect();
+          }
+        }),
       { root, rootMargin, threshold }
     );
+
     observer.observe(targetRef.current);
 
     return () => observer.disconnect();
