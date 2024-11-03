@@ -15,6 +15,7 @@ import { useUserCode, useUserAppName } from '@/store/auth/use-user-store';
 import Avatar from 'boring-avatars';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { MOBILE_MEDIAQUERY } from '@/constants/media-query';
+import { useAuthCheckAndRedirectLogin } from '@/hooks/use-auth-check-and-redirect-login';
 
 export const HomePage = () => {
   const userCode = useUserCode();
@@ -22,12 +23,16 @@ export const HomePage = () => {
   const { data: joinedSpaceList = [] } = useGetJoinedSpaceList();
   const isMobile = useMediaQuery(MOBILE_MEDIAQUERY);
 
+  const isCheckingAuth = useAuthCheckAndRedirectLogin();
+
+  if (isCheckingAuth) {
+    return <></>;
+  }
+
   return (
     <div className="flex w-full flex-col items-start">
-      {!isMobile && userCode && userAppName && (
-        <Header userCode={userCode!} userAppName={userAppName!} />
-      )}
-      {isMobile && userCode && (
+      {!isMobile && <Header userCode={userCode!} userAppName={userAppName!} />}
+      {isMobile && (
         <HeaderM>
           <HeaderM.Left>
             <img src={Logo} alt="do-with 로고" />
