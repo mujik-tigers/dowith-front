@@ -3,6 +3,10 @@ import {
   ConfirmModal,
   TConfirmModalProps,
 } from '@/components/common/modal/confirm-modal/confirm-modal';
+import {
+  AlertModal,
+  TAlertModalProps,
+} from '@/components/common/modal/alert-modal/alert-modal';
 
 export const ModalManager = () => {
   const { modals } = useModalStore();
@@ -17,6 +21,15 @@ export const ModalManager = () => {
               <div key={id}>
                 <ConfirmModal
                   {...(props as TConfirmModalProps)}
+                  onClose={() => closeModal(id)}
+                />
+              </div>
+            );
+          case 'alert':
+            return (
+              <div key={id}>
+                <AlertModal
+                  {...(props as TAlertModalProps)}
                   onClose={() => closeModal(id)}
                 />
               </div>
