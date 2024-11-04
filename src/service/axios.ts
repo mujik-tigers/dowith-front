@@ -1,6 +1,7 @@
 import { API_URL } from '@/constants/api';
 import { useUserAppStore } from '@/store/auth/use-user-store';
 import axios from 'axios';
+import { openModal } from '@/store/use-modal-store';
 
 export const publicApi = axios.create({
   baseURL: API_URL,
@@ -23,11 +24,17 @@ privateApi.interceptors.request.use((config) => {
   if (accessToken) {
     config.headers['Authorization'] = `Bearer ${accessToken}`;
   } else {
-    // accessToken이 없을 때,
-    // 모달 및 로그인 페이지로 이동 필요
-    // window.location.href = '/login';
-    // console.log('여기', config);
-
+    openModal({
+      type: 'alert',
+      id: 'need-login',
+      props: {
+        title: '로그인이 필요한 서비스입니다.',
+        description: '"확인"을 누르면 로그인 화면으로 이동합니다.',
+        onConfirm: () => {
+          window.location.href = '/login';
+        },
+      },
+    });
     return Promise.reject(new Error('No access token, redirecting to login.'));
   }
   return config;
@@ -73,9 +80,18 @@ privateApi.interceptors.response.use(
         return privateApi(originalRequest);
       } catch (refreshError) {
         // 리프래시 토큰까지 만료되었을 때
-        console.error('Refresh token failed:', refreshError);
-        clearUserData();
-        // window.location.href = '/login';
+        openModal({
+          type: 'alert',
+          id: 'need-login',
+          props: {
+            title: '로그인 세션이 만료되었습니다.',
+            description: '"확인"을 누르면 로그인 화면으로 이동합니다.',
+            onConfirm: () => {
+              window.location.href = '/login';
+              clearUserData();
+            },
+          },
+        });
         return Promise.reject(refreshError);
       }
     }
