@@ -1,8 +1,6 @@
 import FileIcon from '@/assets/icons/file.svg?react';
 import HomeIcon from '@/assets/icons/home.svg?react';
 import PlusIcon from '@/assets/icons/plus.svg?react';
-import SearchIcon from '@/assets/icons/search.svg?react';
-import { Input } from '@/components/common/input/input';
 import { Tooltip } from '@/components/common/tooltip/tooltip';
 import { JoinedSpaceList } from '@/components/space-list/joined-space-list';
 import { useGetJoinedSpaceList } from '@/hooks/queries/use-get-joined-space-list';
@@ -16,6 +14,7 @@ import Avatar from 'boring-avatars';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { MOBILE_MEDIAQUERY } from '@/constants/media-query';
 import { useAuthCheckAndRedirectLogin } from '@/hooks/use-auth-check-and-redirect-login';
+import { SearchedSpaceList } from '@/components/space-list/searched-space-list';
 
 export const HomePage = () => {
   const userCode = useUserCode();
@@ -73,21 +72,7 @@ export const HomePage = () => {
           <JoinedSpaceList spaceData={joinedSpaceList} />
         </JoinedSpaceSection>
         <SearchedSpaceSection>
-          <SearchedSpaceContent>
-            <SearchedSpaceHeader>
-              <TitleAndIconWrapper>
-                <SearchIcon className="size-7" />
-                <SearchedSpaceTitle>스페이스 탐색</SearchedSpaceTitle>
-              </TitleAndIconWrapper>
-              <InputWrapper>
-                <Input
-                  borderType="outline"
-                  placeholder="검색어를 입력해주세요."
-                />
-              </InputWrapper>
-            </SearchedSpaceHeader>
-            {/* <SearchedSpaceList /> */}
-          </SearchedSpaceContent>
+          <SearchedSpaceList />
         </SearchedSpaceSection>
         <TooltipWrapper>
           <Tooltip
@@ -120,11 +105,6 @@ const WaitingSpaceCountWrapper = tw.div`absolute left-7 flex h-5 w-5 items-cente
 const WaitingSpaceCount = tw.span`text-B12 text-red md:text-M10`;
 const JoinedSpaceDescription = tw.span`inline-block truncate text-M14 text-textWeak md:text-M10`;
 
-const SearchedSpaceSection = tw.div`flex grow flex-col items-start justify-between`;
-const SearchedSpaceContent = tw.div`flex w-full flex-col items-start gap-5 p-5 md:gap-3`;
-const SearchedSpaceHeader = tw.div`flex w-full items-center justify-between md:(flex-col items-start gap-2)`;
-const TitleAndIconWrapper = tw.div`flex items-center gap-2 min-w-[10rem]`;
+const SearchedSpaceSection = tw.div`flex grow flex-col items-start justify-between overflow-y-auto lg:h-[calc(100vh - 72px)] xl:h-[calc(100vh - 72px)]`;
 
-const SearchedSpaceTitle = tw.span`pt-0 text-B20 text-title md:text-B16`;
-const InputWrapper = tw.div`md:w-full lg:(w-full max-w-[24rem]) xl:w-96`;
 const TooltipWrapper = tw.div`fixed bottom-5 right-4 flex w-full items-center justify-end gap-2`;
