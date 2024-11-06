@@ -7,7 +7,7 @@ export const HeaderM: React.FC<{ children: ReactNode }> & {
   Right: React.FC<{ children: ReactNode }>;
 } = ({ children }) => {
   return (
-    <header className="flex w-full justify-between border-b border-line p-4">
+    <header className="flex w-full justify-between border-b border-line p-4 sticky top-0 bg-pureWhite z-10">
       {children}
     </header>
   );
@@ -33,3 +33,6 @@ HeaderM.Right = ({ children }) => {
 
 const Wrapper = tw.div`flex items-center`;
 const TitleWrapper = tw.div`absolute left-1/2 -translate-x-1/2 transform`;
+
+// 모바일 상태에서 Header를 고정해야한다
+// 색상을 root에 준거 + z-index
