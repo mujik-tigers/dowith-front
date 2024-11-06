@@ -4,6 +4,7 @@ import { Button } from '@/components/common/button/button';
 import { KAKAO_URL, GOOGLE_URL, URL } from '@/constants/api';
 import { KAKAO_CLIENT_ID, GOOGLE_CLIENT_ID } from '@/constants/oauth-login';
 import tw from 'twin.macro';
+import DowithLogo from '@/assets/images/dowith-logo.svg';
 
 export const LoginPage = () => {
   const kakaoLoginButtonHandler = () => {
@@ -19,7 +20,12 @@ export const LoginPage = () => {
   return (
     <LoginPageWrapper>
       <LoginPageContent>
-        <LogoWrapper></LogoWrapper>
+        <LogoWrapper>
+          <img src={DowithLogo} alt="dowith-logo" />
+          <LoginText>로그인</LoginText>
+          <Description>dowith에 오신걸 환영합니다.</Description>
+          <Description>당신의 팀과 함께 더 나은 목표를 이뤄보세요.</Description>
+        </LogoWrapper>
         <LoginButtonWrapper>
           <Button
             size="flexibleL"
@@ -43,6 +49,8 @@ export const LoginPage = () => {
 
 const LoginPageWrapper = tw.div`absolute inset-0 flex items-center justify-center`;
 const LoginPageContent = tw.div`flex flex-col items-center gap-10 px-2.5 h-[308px] w-[320px]`;
-const LogoWrapper = tw.div`flex flex-col items-center gap-4 h-[140px] w-[204px]`;
-const LoginButtonWrapper = tw.div`flex flex-col items-start gap-5 h-[128px] w-[300px]`;
+const LogoWrapper = tw.div`flex flex-col items-center gap-4`;
+const LoginButtonWrapper = tw.div`flex flex-col items-start gap-5 w-[300px]`;
 const LoginButtonImage = tw.img`max-w-none`;
+const LoginText = tw.span`text-XB24 text-title`;
+const Description = tw.span`text-M16 text-title`;
