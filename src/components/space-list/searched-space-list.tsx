@@ -33,7 +33,7 @@ export const SearchedSpaceList = () => {
 
   const {
     data: searchedSpaceListData,
-    isPending,
+    isPending: isSearchSpacesPending,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
@@ -79,12 +79,16 @@ export const SearchedSpaceList = () => {
         </InputWrapper>
       </SearchedSpaceHeader>
       <SpaceList>
-        <div>
-          <SearchResultKeyword>{`"${debounedKeyword}"`}</SearchResultKeyword>
-          <SearchResultText> 검색결과</SearchResultText>
-        </div>
-        {isPending ? (
-          <LoadingSpinner />
+        {debounedKeyword && (
+          <div>
+            <SearchResultKeyword>{`"${debounedKeyword}"`}</SearchResultKeyword>
+            <SearchResultText> 검색결과</SearchResultText>
+          </div>
+        )}
+        {debounedKeyword && isSearchSpacesPending ? (
+          <LoadingSpinnerWrapper>
+            <LoadingSpinner />
+          </LoadingSpinnerWrapper>
         ) : (
           searchedSpaceList?.map((space) => (
             <SpaceListItem key={space.id}>
@@ -112,9 +116,9 @@ export const SearchedSpaceList = () => {
           ))
         )}
         {isFetchingNextPage && (
-          <div className="flex justify-center w-full">
+          <LoadingSpinnerWrapper>
             <LoadingSpinner />
-          </div>
+          </LoadingSpinnerWrapper>
         )}
         <LoadMoreTrigger ref={targetRef} />
       </SpaceList>
@@ -123,7 +127,7 @@ export const SearchedSpaceList = () => {
 };
 
 const SearchedSpaceContent = tw.div`flex w-full flex-col items-start gap-6 p-5 md:gap-3`;
-const SearchedSpaceHeader = tw.div`flex w-full items-center justify-between md:(flex-col items-start gap-2)`;
+const SearchedSpaceHeader = tw.div`flex w-full items-center justify-between md:(flex-col items-start gap-2) lg:(sticky top-0 z-10 bg-pureWhite) xl:(sticky top-0 z-10 bg-pureWhite)`;
 const TitleAndIconWrapper = tw.div`flex items-center gap-2 min-w-[10rem]`;
 const SearchedSpaceTitle = tw.span`pt-0 text-B20 text-title md:text-B16`;
 const InputWrapper = tw.div`md:w-full lg:(w-full max-w-[24rem]) xl:w-96`;
@@ -136,12 +140,8 @@ const SpaceContentWrapper = tw.div`flex w-full justify-between`;
 const ImageTitleWrapper = tw.div`flex items-center gap-2 min-w-[18rem] md:min-w-[14rem]`;
 const SpaceImage = tw.img`h-8 w-8 md:(h-6 w-6)`;
 const SpaceTitle = tw.span`text-M14 text-text md:text-M12`;
-const SpaceParticipants = tw.span`text-B16 text-textWeak md:text-B12`;
+const SpaceParticipants = tw.span`flex items-center text-B16 text-textWeak md:text-B12`;
 const SpaceDescriptionWithXl = tw.span`hidden items-center text-M16 text-textWeak xl:flex`;
 const SpaceDescriptionWithMd = tw.span`flex w-full items-start text-M16 text-textWeak md:text-M12 xl:hidden`;
 const LoadMoreTrigger = tw.div`h-2`;
-
-// 로딩 스피너 만들고 pending 상태일 때 스피너 보여주고
-// input 요소 + HeaderM 상단에 고정시키고 색상 유지
-// 검색어가 없을 때, "검색어" 결과 -> 이 부분 처리하기
-// 랜덤 요소 어떻게 받아올지 고민하기
+const LoadingSpinnerWrapper = tw.div`flex h-full w-full items-center justify-center`;
