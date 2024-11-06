@@ -49,7 +49,7 @@ export const UserAppNameSetupPage = () => {
 
     updateUserAppName(newName, {
       onSuccess: () => {
-        navigate('/');
+        navigate('/home');
       },
       onError(error) {
         console.log(error, 'errrrrrrrrrrrrrrrrrr');
@@ -97,7 +97,7 @@ export const UserAppNameSetupPage = () => {
               bgColor="white"
               type="button"
               onClick={() => {
-                navigate('/');
+                navigate('/home');
               }}
             >
               건너뛰기

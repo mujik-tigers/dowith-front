@@ -18,7 +18,7 @@ export const useAuthCheckAndRedirectLogin = () => {
           title: '로그인이 필요한 서비스입니다.',
           description: '"확인"을 누르면 로그인 화면으로 이동합니다.',
           onConfirm: () => {
-            navigate('/login');
+            navigate('/');
           },
         },
       });
