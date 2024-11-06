@@ -24,18 +24,7 @@ privateApi.interceptors.request.use((config) => {
   if (accessToken) {
     config.headers['Authorization'] = `Bearer ${accessToken}`;
   } else {
-    openModal({
-      type: 'alert',
-      id: 'need-login',
-      props: {
-        title: '로그인이 필요한 서비스입니다.',
-        description: '"확인"을 누르면 로그인 화면으로 이동합니다.',
-        onConfirm: () => {
-          window.location.href = '/login';
-        },
-      },
-    });
-    return Promise.reject(new Error('No access token, redirecting to login.'));
+    return Promise.reject(new axios.Cancel('로그인이 필요한 서비스입니다.'));
   }
   return config;
 });
@@ -87,12 +76,14 @@ privateApi.interceptors.response.use(
             title: '로그인 세션이 만료되었습니다.',
             description: '"확인"을 누르면 로그인 화면으로 이동합니다.',
             onConfirm: () => {
-              window.location.href = '/login';
+              window.location.href = '/';
               clearUserData();
             },
           },
         });
-        return Promise.reject(refreshError);
+        return Promise.reject(
+          new axios.Cancel('로그인 세션이 만료되었습니다.')
+        );
       }
     }
     // accessToken 정상적으로 동작하지만, 그 외의 에러가 발생한 경우
