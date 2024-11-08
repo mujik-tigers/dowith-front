@@ -7,6 +7,10 @@ import {
   AlertModal,
   TAlertModalProps,
 } from '@/components/common/modal/alert-modal/alert-modal';
+import {
+  UserSettingModal,
+  TUserSettingModalProps,
+} from '@/components/user-setting-modal/user-setting-modal';
 
 export const ModalManager = () => {
   const { modals } = useModalStore();
@@ -30,6 +34,15 @@ export const ModalManager = () => {
               <div key={id}>
                 <AlertModal
                   {...(props as TAlertModalProps)}
+                  onClose={() => closeModal(id)}
+                />
+              </div>
+            );
+          case 'user-setting':
+            return (
+              <div key={id}>
+                <UserSettingModal
+                  {...(props as TUserSettingModalProps)}
                   onClose={() => closeModal(id)}
                 />
               </div>

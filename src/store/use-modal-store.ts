@@ -1,13 +1,14 @@
 import { create } from 'zustand';
 import { TConfirmModalProps } from '@/components/common/modal/confirm-modal/confirm-modal';
 import { TAlertModalProps } from '@/components/common/modal/alert-modal/alert-modal';
+import { TUserSettingModalProps } from '@/components/user-setting-modal/user-setting-modal';
 
-type TModalType = 'confirm' | 'alert' | 'form';
+type TModalType = 'confirm' | 'alert' | 'form' | 'user-setting';
 
 type TModalConfig = {
   type: TModalType;
   id: string;
-  props?: TConfirmModalProps | TAlertModalProps;
+  props?: TConfirmModalProps | TAlertModalProps | TUserSettingModalProps;
 };
 
 type TModalState = {
