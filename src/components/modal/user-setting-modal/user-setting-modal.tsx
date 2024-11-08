@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
-import { Button } from '../../components/common/button/button';
+import { Button } from '../../common/button/button';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import {

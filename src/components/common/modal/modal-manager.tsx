@@ -10,7 +10,7 @@ import {
 import {
   UserSettingModal,
   TUserSettingModalProps,
-} from '@/components/user-setting-modal/user-setting-modal';
+} from '@/components/modal/user-setting-modal/user-setting-modal';
 
 export const ModalManager = () => {
   const { modals } = useModalStore();
