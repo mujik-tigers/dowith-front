@@ -9,12 +9,13 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useUpdateUserAppName } from '@/hooks/queries/use-update-user-app-name';
-import { useUserAppName, useSetUserData } from '@/store/auth/use-user-store';
+import { useSetUserData } from '@/store/auth/use-user-store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import tw from 'twin.macro';
+import { useAuthCheckAndRedirectLogin } from '@/hooks/use-auth-check-and-redirect-login';
 
 const formSchema = z.object({
   newName: z
@@ -26,13 +27,8 @@ const formSchema = z.object({
 });
 
 export const UserAppNameSetupPage = () => {
-  const userAppName = useUserAppName();
   const setUserData = useSetUserData();
 
-  /** TODO
-   *  userData가 없으면 로그인 페이지, firstTime이 false일 경우는 홈
-   * */
-  console.log(userAppName);
   const { mutate: updateUserAppName, isPending: isUpdatingNickname } =
     useUpdateUserAppName();
 
@@ -44,6 +40,12 @@ export const UserAppNameSetupPage = () => {
       newName: '',
     },
   });
+
+  const isCheckingAuth = useAuthCheckAndRedirectLogin();
+
+  if (isCheckingAuth) {
+    return <></>;
+  }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const { newName } = values;
