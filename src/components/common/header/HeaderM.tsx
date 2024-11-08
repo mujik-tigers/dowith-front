@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import tw from 'twin.macro';
+import { openModal } from '@/store/use-modal-store';
 
 export const HeaderM: React.FC<{ children: ReactNode }> & {
   Left: React.FC<{ children: ReactNode }>;
@@ -14,22 +15,31 @@ export const HeaderM: React.FC<{ children: ReactNode }> & {
 };
 
 HeaderM.Left = ({ children }) => {
-  return <Wrapper className="flex items-center">{children}</Wrapper>;
+  return <Wrapper>{children}</Wrapper>;
 };
 
 HeaderM.Center = ({ children }) => {
   return (
     <Wrapper>
-      <TitleWrapper className="absolute left-1/2 -translate-x-1/2 transform">
-        {children}
-      </TitleWrapper>
+      <TitleWrapper>{children}</TitleWrapper>
     </Wrapper>
   );
 };
 
 HeaderM.Right = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
+  return (
+    <Wrapper
+      onClick={() => {
+        openModal({
+          type: 'user-setting',
+          id: 'user-setting',
+        });
+      }}
+    >
+      {children}
+    </Wrapper>
+  );
 };
 
-const Wrapper = tw.div`flex items-center`;
+const Wrapper = tw.div`flex cursor-pointer items-center`;
 const TitleWrapper = tw.div`absolute left-1/2 -translate-x-1/2 transform`;
