@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDebounceInput } from '@/hooks/use-debounce-input';
 import { LoadingSpinner } from '../common/loading-spinner/loading-spinner';
+import { useUserAppName } from '@/store/auth/use-user-store';
 
 const searchFormSchema = z.object({
   keyword: z
@@ -20,6 +21,7 @@ const searchFormSchema = z.object({
 });
 
 export const SearchedSpaceList = () => {
+  const userAppName = useUserAppName();
   const form = useForm<z.infer<typeof searchFormSchema>>({
     resolver: zodResolver(searchFormSchema),
     defaultValues: {
@@ -48,6 +50,43 @@ export const SearchedSpaceList = () => {
     onIntersect: fetchNextPage,
     threshold: 0,
   });
+
+  const renderSpaceListContent = () => {
+    // if (!debounedKeyword) {
+    //   return
+    // 랜덤 스페이스 렌더링
+    // }
+    if (debounedKeyword && isSearchSpacesPending) {
+      return (
+        <LoadingSpinnerWrapper>
+          <LoadingSpinner />
+        </LoadingSpinnerWrapper>
+      );
+    }
+
+    if (debounedKeyword && searchedSpaceList?.length === 0) {
+      return <NoResultsMessage>검색 결과가 없습니다.</NoResultsMessage>;
+    }
+
+    return searchedSpaceList?.map((space) => (
+      <SpaceListItem key={space.id}>
+        <SpaceContentWrapper>
+          <ImageTitleWrapper>
+            <SpaceImage
+              src={space.image ? space.image : DefulatSpaceProfile}
+              alt="space profile"
+            />
+            <SpaceTitle>{space.title}</SpaceTitle>
+          </ImageTitleWrapper>
+          <SpaceDescriptionWithXl>{space.description}</SpaceDescriptionWithXl>
+          <SpaceParticipants>
+            {space.currentPeople} / {space.maxPeople}
+          </SpaceParticipants>
+        </SpaceContentWrapper>
+        <SpaceDescriptionWithMd>{space.description}</SpaceDescriptionWithMd>
+      </SpaceListItem>
+    ));
+  };
 
   return (
     <SearchedSpaceContent>
@@ -79,42 +118,18 @@ export const SearchedSpaceList = () => {
         </InputWrapper>
       </SearchedSpaceHeader>
       <SpaceList>
-        {debounedKeyword && (
+        {debounedKeyword ? (
           <div>
             <SearchResultKeyword>{`"${debounedKeyword}"`}</SearchResultKeyword>
             <SearchResultText> 검색결과</SearchResultText>
           </div>
-        )}
-        {debounedKeyword && isSearchSpacesPending ? (
-          <LoadingSpinnerWrapper>
-            <LoadingSpinner />
-          </LoadingSpinnerWrapper>
         ) : (
-          searchedSpaceList?.map((space) => (
-            <SpaceListItem key={space.id}>
-              <SpaceContentWrapper>
-                <ImageTitleWrapper>
-                  <SpaceImage
-                    src={space.image ? space.image : DefulatSpaceProfile}
-                    alt="space profile"
-                  />
-                  <SpaceTitle>{space.title}</SpaceTitle>
-                </ImageTitleWrapper>
-                {/* 1280px 이상에서 화면에서 나타나는 요소 */}
-                <SpaceDescriptionWithXl>
-                  {space.description}
-                </SpaceDescriptionWithXl>
-                <SpaceParticipants>
-                  {space.currentPeople} / {space.maxPeople}
-                </SpaceParticipants>
-              </SpaceContentWrapper>
-              {/* 1280px 미만에서 화면에서 나타나는 요소 */}
-              <SpaceDescriptionWithMd>
-                {space.description}
-              </SpaceDescriptionWithMd>
-            </SpaceListItem>
-          ))
+          <div>
+            <SearchResultKeyword>{`${userAppName}`}</SearchResultKeyword>
+            <SearchResultText>님에게 추천하는 스페이스입니다!</SearchResultText>
+          </div>
         )}
+        {renderSpaceListContent()}
         {isFetchingNextPage && (
           <LoadingSpinnerWrapper>
             <LoadingSpinner />
@@ -145,3 +160,4 @@ const SpaceDescriptionWithXl = tw.span`hidden items-center text-M16 text-textWea
 const SpaceDescriptionWithMd = tw.span`flex w-full items-start text-M16 text-textWeak md:text-M12 xl:hidden`;
 const LoadMoreTrigger = tw.div`h-2`;
 const LoadingSpinnerWrapper = tw.div`flex h-full w-full items-center justify-center`;
+const NoResultsMessage = tw.div`flex w-full items-center justify-center text-M16 text-textWeak`;
