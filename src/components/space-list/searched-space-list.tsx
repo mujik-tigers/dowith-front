@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useDebounceInput } from '@/hooks/use-debounce-input';
 import { LoadingSpinner } from '../common/loading-spinner/loading-spinner';
 import { useUserAppName } from '@/store/auth/use-user-store';
+import { useGetRandomSpaceList } from '@/hooks/queries/use-get-random-space-list';
 
 const searchFormSchema = z.object({
   keyword: z
@@ -51,11 +52,29 @@ export const SearchedSpaceList = () => {
     threshold: 0,
   });
 
+  const { data: randomSpaceList } = useGetRandomSpaceList();
+
   const renderSpaceListContent = () => {
-    // if (!debounedKeyword) {
-    //   return
-    // 랜덤 스페이스 렌더링
-    // }
+    if (!debounedKeyword) {
+      return randomSpaceList?.map((space) => (
+        <SpaceListItem key={space.id}>
+          <SpaceContentWrapper>
+            <ImageTitleWrapper>
+              <SpaceImage
+                src={space.image ? space.image : DefulatSpaceProfile}
+                alt="space profile"
+              />
+              <SpaceTitle>{space.title}</SpaceTitle>
+            </ImageTitleWrapper>
+            <SpaceDescriptionWithXl>{space.description}</SpaceDescriptionWithXl>
+            <SpaceParticipants>
+              {space.currentPeople} / {space.maxPeople}
+            </SpaceParticipants>
+          </SpaceContentWrapper>
+          <SpaceDescriptionWithMd>{space.description}</SpaceDescriptionWithMd>
+        </SpaceListItem>
+      ));
+    }
     if (debounedKeyword && isSearchSpacesPending) {
       return (
         <LoadingSpinnerWrapper>
