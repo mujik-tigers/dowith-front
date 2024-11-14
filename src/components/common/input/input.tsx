@@ -14,7 +14,7 @@ const INPUT_TYPE_CLASSES = {
 
 export const Input = forwardRef<
   HTMLInputElement,
-  {
+  React.InputHTMLAttributes<HTMLInputElement> & {
     borderType: 'outline' | 'ghost';
     placeholder?: string;
     disabled?: boolean;
