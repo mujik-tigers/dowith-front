@@ -15,6 +15,7 @@ import { useMediaQuery } from '@/hooks/use-media-query';
 import { MOBILE_MEDIAQUERY } from '@/constants/media-query';
 import { useAuthCheckAndRedirectLogin } from '@/hooks/use-auth-check-and-redirect-login';
 import { SearchedSpaceList } from '@/components/space-list/searched-space-list';
+import { openModal } from '@/store/use-modal-store';
 
 export const HomePage = () => {
   const userCode = useUserCode();
@@ -84,6 +85,12 @@ export const HomePage = () => {
             trigger={<PlusIcon />}
             content="새 스페이스 개설하기"
             tooltipLocation="left"
+            onTooltipClick={() =>
+              openModal({
+                type: 'create-space',
+                id: 'create-space',
+              })
+            }
           />
         </TooltipWrapper>
       </ContentWrapper>

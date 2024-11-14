@@ -2,13 +2,23 @@ import { create } from 'zustand';
 import { TConfirmModalProps } from '@/components/common/modal/confirm-modal/confirm-modal';
 import { TAlertModalProps } from '@/components/common/modal/alert-modal/alert-modal';
 import { TUserSettingModalProps } from '@/components/modal/user-setting-modal/user-setting-modal';
+import { TCreateSpaceModalProps } from '@/components/modal/create-space-modal/create-space-modal';
 
-type TModalType = 'confirm' | 'alert' | 'form' | 'user-setting';
+type TModalType =
+  | 'confirm'
+  | 'alert'
+  | 'form'
+  | 'user-setting'
+  | 'create-space';
 
 type TModalConfig = {
   type: TModalType;
   id: string;
-  props?: TConfirmModalProps | TAlertModalProps | TUserSettingModalProps;
+  props?:
+    | TConfirmModalProps
+    | TAlertModalProps
+    | TUserSettingModalProps
+    | TCreateSpaceModalProps;
 };
 
 type TModalState = {

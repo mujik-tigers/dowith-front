@@ -11,6 +11,10 @@ import {
   UserSettingModal,
   TUserSettingModalProps,
 } from '@/components/modal/user-setting-modal/user-setting-modal';
+import {
+  CreateSpaceModal,
+  TCreateSpaceModalProps,
+} from '@/components/modal/create-space-modal/create-space-modal';
 
 export const ModalManager = () => {
   const { modals } = useModalStore();
@@ -43,6 +47,15 @@ export const ModalManager = () => {
               <div key={id}>
                 <UserSettingModal
                   {...(props as TUserSettingModalProps)}
+                  onClose={() => closeModal(id)}
+                />
+              </div>
+            );
+          case 'create-space':
+            return (
+              <div key={id}>
+                <CreateSpaceModal
+                  {...(props as TCreateSpaceModalProps)}
                   onClose={() => closeModal(id)}
                 />
               </div>
