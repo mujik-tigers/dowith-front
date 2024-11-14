@@ -102,7 +102,6 @@ export const UserSettingModal = ({ onClose }: TUserSettingModalProps) => {
                 size="flexibleM"
                 bgColor="yellow"
                 type="submit"
-                onClick={() => {}}
                 disabled={isUpdatingNickname}
               >
                 변경하고 저장
