@@ -82,7 +82,7 @@ export const CreateSpaceModal = ({ onClose }: TCreateSpaceModalProps) => {
     createSpace(
       { spaceData: formData },
       {
-        onSuccess: ({ teamId }) => {
+        onSuccess: () => {
           onClose && onClose();
           // teamId를 받아와서 해당 스페이스 이동
         },
@@ -95,7 +95,7 @@ export const CreateSpaceModal = ({ onClose }: TCreateSpaceModalProps) => {
       <ModalContent>
         <ModalHeader>
           <ModalTitle>스페이스 생성하기</ModalTitle>
-          {/* <ModalDescription>새로운 스페이스 생성하기</ModalDescription> */}
+          <ModalDescription>새로운 스페이스 생성하기</ModalDescription>
         </ModalHeader>
 
         <Form {...form}>
