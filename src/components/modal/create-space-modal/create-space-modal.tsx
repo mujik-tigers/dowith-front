@@ -20,6 +20,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ImageInput } from '@/components/image-input/image-input';
+import { useCreateSpace } from '@/hooks/queries/use-create-space';
 
 // import { useNavigate } from 'react-router-dom';
 
@@ -60,9 +61,10 @@ export type TCreateSpaceModalProps = {
 
 export const CreateSpaceModal = ({ onClose }: TCreateSpaceModalProps) => {
   // const navigate = useNavigate(); 모달 생성 후에 해당 스페이스 페이지로 이동할 때 사용
+  const { mutate: createSpace } = useCreateSpace();
+
   const form = useForm<z.infer<typeof createSpaceSchema>>({
     resolver: zodResolver(createSpaceSchema),
-    mode: 'onBlur',
     defaultValues: {
       title: '',
       description: '',
@@ -77,7 +79,15 @@ export const CreateSpaceModal = ({ onClose }: TCreateSpaceModalProps) => {
     formData.append('description', data.description);
     if (data.image) formData.append('image', data.image);
 
-    // 전송 로직 포함
+    createSpace(
+      { spaceData: formData },
+      {
+        onSuccess: ({ teamId }) => {
+          onClose && onClose();
+          // teamId를 받아와서 해당 스페이스 이동
+        },
+      }
+    );
   };
 
   return (
@@ -85,7 +95,7 @@ export const CreateSpaceModal = ({ onClose }: TCreateSpaceModalProps) => {
       <ModalContent>
         <ModalHeader>
           <ModalTitle>스페이스 생성하기</ModalTitle>
-          <ModalDescription>새로운 스페이스 생성하기</ModalDescription>
+          {/* <ModalDescription>새로운 스페이스 생성하기</ModalDescription> */}
         </ModalHeader>
 
         <Form {...form}>
