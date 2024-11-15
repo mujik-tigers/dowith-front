@@ -1,8 +1,6 @@
 import FileIcon from '@/assets/icons/file.svg?react';
 import HomeIcon from '@/assets/icons/home.svg?react';
 import PlusIcon from '@/assets/icons/plus.svg?react';
-import SearchIcon from '@/assets/icons/search.svg?react';
-import { Input } from '@/components/common/input/input';
 import { Tooltip } from '@/components/common/tooltip/tooltip';
 import { JoinedSpaceList } from '@/components/space-list/joined-space-list';
 import { useGetJoinedSpaceList } from '@/hooks/queries/use-get-joined-space-list';
@@ -14,14 +12,22 @@ import { HeaderM } from '@/components/common/header/HeaderM';
 import { useUserCode, useUserAppName } from '@/store/auth/use-user-store';
 import Avatar from 'boring-avatars';
 import { useMediaQuery } from '@/hooks/use-media-query';
-
-const MOBILE_MEDIAQUERY = '(max-width: 767px)';
+import { MOBILE_MEDIAQUERY } from '@/constants/media-query';
+import { useAuthCheckAndRedirectLogin } from '@/hooks/use-auth-check-and-redirect-login';
+import { SearchedSpaceList } from '@/components/space-list/searched-space-list';
+import { openModal } from '@/store/use-modal-store';
 
 export const HomePage = () => {
   const userCode = useUserCode();
   const userAppName = useUserAppName();
   const { data: joinedSpaceList = [] } = useGetJoinedSpaceList();
   const isMobile = useMediaQuery(MOBILE_MEDIAQUERY);
+
+  const isCheckingAuth = useAuthCheckAndRedirectLogin();
+
+  if (isCheckingAuth) {
+    return <></>;
+  }
 
   return (
     <div className="flex w-full flex-col items-start">
@@ -67,21 +73,7 @@ export const HomePage = () => {
           <JoinedSpaceList spaceData={joinedSpaceList} />
         </JoinedSpaceSection>
         <SearchedSpaceSection>
-          <SearchedSpaceContent>
-            <SearchedSpaceHeader>
-              <TitleAndIconWrapper>
-                <SearchIcon className="size-7" />
-                <SearchedSpaceTitle>스페이스 탐색</SearchedSpaceTitle>
-              </TitleAndIconWrapper>
-              <InputWrapper>
-                <Input
-                  borderType="outline"
-                  placeholder="검색어를 입력해주세요."
-                />
-              </InputWrapper>
-            </SearchedSpaceHeader>
-            {/* <SearchedSpaceList /> */}
-          </SearchedSpaceContent>
+          <SearchedSpaceList />
         </SearchedSpaceSection>
         <TooltipWrapper>
           <Tooltip
@@ -93,6 +85,12 @@ export const HomePage = () => {
             trigger={<PlusIcon />}
             content="새 스페이스 개설하기"
             tooltipLocation="left"
+            onTooltipClick={() =>
+              openModal({
+                type: 'create-space',
+                id: 'create-space',
+              })
+            }
           />
         </TooltipWrapper>
       </ContentWrapper>
@@ -114,11 +112,6 @@ const WaitingSpaceCountWrapper = tw.div`absolute left-7 flex h-5 w-5 items-cente
 const WaitingSpaceCount = tw.span`text-B12 text-red md:text-M10`;
 const JoinedSpaceDescription = tw.span`inline-block truncate text-M14 text-textWeak md:text-M10`;
 
-const SearchedSpaceSection = tw.div`flex grow flex-col items-start justify-between`;
-const SearchedSpaceContent = tw.div`flex w-full flex-col items-start gap-5 p-5 md:gap-3`;
-const SearchedSpaceHeader = tw.div`flex w-full items-center justify-between md:(flex-col items-start gap-2)`;
-const TitleAndIconWrapper = tw.div`flex items-center gap-2 min-w-[10rem]`;
+const SearchedSpaceSection = tw.div`flex grow flex-col items-start justify-between overflow-y-auto lg:h-[calc(100vh - 72px)] xl:h-[calc(100vh - 72px)]`;
 
-const SearchedSpaceTitle = tw.span`pt-0 text-B20 text-title md:text-B16`;
-const InputWrapper = tw.div`md:w-full lg:(w-full max-w-[24rem]) xl:w-96`;
 const TooltipWrapper = tw.div`fixed bottom-5 right-4 flex w-full items-center justify-end gap-2`;
