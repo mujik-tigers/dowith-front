@@ -31,17 +31,20 @@ export const Button: React.FC<{
   bgColor?: keyof typeof BG_COLOR_CLASSES;
   onClick?: () => void;
   type?: 'button' | 'submit';
+  disabled?: boolean;
 }> = ({
   children,
   type = 'button',
   size = 'flexibleM',
   bgColor = 'red',
   onClick,
+  disabled,
 }) => {
   return (
     <MotionButton
       type={type}
       onClick={onClick}
+      disabled={disabled}
       css={[SIZE_CLASSES[size], BG_COLOR_CLASSES[bgColor]]}
     >
       {children}

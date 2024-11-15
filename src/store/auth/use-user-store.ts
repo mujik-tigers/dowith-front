@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 type TUserAppData = {
   userCode: string | null;
@@ -39,6 +39,7 @@ export const useUserAppStore = create<TUserAppStore>()(
     }),
     {
       name: 'user-app-data-storage',
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

@@ -9,12 +9,13 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useUpdateUserAppName } from '@/hooks/queries/use-update-user-app-name';
-import { useUserAppName } from '@/store/auth/use-user-store';
+import { useSetUserData } from '@/store/auth/use-user-store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import tw from 'twin.macro';
+import { useAuthCheckAndRedirectLogin } from '@/hooks/use-auth-check-and-redirect-login';
 
 const formSchema = z.object({
   newName: z
@@ -26,13 +27,10 @@ const formSchema = z.object({
 });
 
 export const UserAppNameSetupPage = () => {
-  const userAppName = useUserAppName();
+  const setUserData = useSetUserData();
 
-  /** TODO
-   *  userData가 없으면 로그인 페이지, firstTime이 false일 경우는 홈
-   * */
-  console.log(userAppName);
-  const { mutate: updateUserAppName } = useUpdateUserAppName();
+  const { mutate: updateUserAppName, isPending: isUpdatingNickname } =
+    useUpdateUserAppName();
 
   const navigate = useNavigate();
 
@@ -43,13 +41,19 @@ export const UserAppNameSetupPage = () => {
     },
   });
 
+  const isCheckingAuth = useAuthCheckAndRedirectLogin();
+
+  if (isCheckingAuth) {
+    return <></>;
+  }
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log('Submitted values:', values);
     const { newName } = values;
 
     updateUserAppName(newName, {
       onSuccess: () => {
-        navigate('/');
+        setUserData({ userAppName: newName });
+        navigate('/home');
       },
       onError(error) {
         console.log(error, 'errrrrrrrrrrrrrrrrrr');
@@ -97,12 +101,17 @@ export const UserAppNameSetupPage = () => {
               bgColor="white"
               type="button"
               onClick={() => {
-                navigate('/');
+                navigate('/home');
               }}
             >
               건너뛰기
             </Button>
-            <Button size="flexibleM" bgColor="blue" type="submit">
+            <Button
+              size="flexibleM"
+              bgColor="blue"
+              type="submit"
+              disabled={isUpdatingNickname}
+            >
               시작하기
             </Button>
           </ButtonWrapper>

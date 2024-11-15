@@ -12,6 +12,12 @@ type TJoinedSpaceResponseData = {
   };
 };
 
+type TJoinedSpaceResponseData = {
+  data: {
+    teamOutlines: Array<TJoinedSpaceData>;
+  };
+};
+
 type TSearchedSpaceData = {
   description: string;
 } & TJoinedSpaceData;
@@ -24,3 +30,13 @@ type TSearchedSpaceListResponseData = {
 };
 
 type TSearchedSpacelistResponse = TApiResponse<TSearchedSpaceListResponseData>;
+
+type TRandomSpaceData = {
+  description: string;
+} & TJoinedSpaceData;
+
+type TRandomSpaceResponseData = {
+  data: {
+    randomTeamOutlines: Array<TRandomSpaceData>;
+  };
+};
