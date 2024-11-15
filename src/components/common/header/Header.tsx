@@ -16,7 +16,6 @@ export const Header: React.FC<{
         <img src={Logo} alt="do-with 로고" />
         <LogoTitle>dowith</LogoTitle>
       </LogoWrapper>
-
       <AvatarWrapper
         onClick={() => {
           openModal({

@@ -10,6 +10,7 @@ import Logo from '@/assets/images/img_log_small.png';
 import { Header } from '@/components/common/header/Header';
 import { HeaderM } from '@/components/common/header/HeaderM';
 import { useUserCode, useUserAppName } from '@/store/auth/use-user-store';
+import { useUserCode, useUserAppName } from '@/store/auth/use-user-store';
 import Avatar from 'boring-avatars';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { MOBILE_MEDIAQUERY } from '@/constants/media-query';
@@ -18,6 +19,8 @@ import { SearchedSpaceList } from '@/components/space-list/searched-space-list';
 import { openModal } from '@/store/use-modal-store';
 
 export const HomePage = () => {
+  const userCode = useUserCode();
+  const userAppName = useUserAppName();
   const userCode = useUserCode();
   const userAppName = useUserAppName();
   const { data: joinedSpaceList = [] } = useGetJoinedSpaceList();
@@ -31,6 +34,20 @@ export const HomePage = () => {
 
   return (
     <div className="flex w-full flex-col items-start">
+      {!isMobile && <Header userCode={userCode!} userAppName={userAppName!} />}
+      {isMobile && (
+        <HeaderM>
+          <HeaderM.Left>
+            <img src={Logo} alt="do-with 로고" />
+          </HeaderM.Left>
+          <HeaderM.Center>
+            <HeaderTitle>dowith</HeaderTitle>
+          </HeaderM.Center>
+          <HeaderM.Right>
+            <Avatar name={userCode!} variant="beam" size={40} />
+          </HeaderM.Right>
+        </HeaderM>
+      )}
       {!isMobile && <Header userCode={userCode!} userAppName={userAppName!} />}
       {isMobile && (
         <HeaderM>
@@ -100,6 +117,7 @@ export const HomePage = () => {
 
 const ContentWrapper = tw.div`flex w-full md:flex-col`;
 
+const HeaderTitle = tw.p`text-XB24 tracking-tighter`;
 const HeaderTitle = tw.p`text-XB24 tracking-tighter`;
 const JoinedSpaceSection = tw.div`flex grow flex-col items-start gap-5 p-5 md:gap-3 lg:max-w-[500px] xl:max-w-[500px]`;
 const JoinedSpaceSectionHeader = tw.div`flex w-full flex-col items-start gap-2`;

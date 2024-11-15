@@ -12,6 +12,12 @@ type TJoinedSpaceResponseData = {
   };
 };
 
+type TJoinedSpaceResponseData = {
+  data: {
+    teamOutlines: Array<TJoinedSpaceData>;
+  };
+};
+
 type TSearchedSpaceData = {
   description: string;
 } & TJoinedSpaceData;
