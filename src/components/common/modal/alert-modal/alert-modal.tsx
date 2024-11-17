@@ -13,6 +13,7 @@ import tw from 'twin.macro';
 export type TAlertModalProps = {
   title: string;
   description: string;
+  confirmButtonBgColor?: 'red' | 'black';
   onConfirm: () => void;
   onClose?: () => void;
 };
@@ -20,6 +21,7 @@ export type TAlertModalProps = {
 export const AlertModal = ({
   title,
   description,
+  confirmButtonBgColor = 'red',
   onConfirm,
   onClose,
 }: TAlertModalProps) => {
@@ -37,7 +39,7 @@ export const AlertModal = ({
         </ModalHeader>
         <DialogFooter>
           <Button
-            bgColor="red"
+            bgColor={confirmButtonBgColor}
             onClick={() => {
               onConfirm();
               onClose && onClose();
