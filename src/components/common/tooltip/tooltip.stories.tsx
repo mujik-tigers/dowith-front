@@ -28,6 +28,7 @@ export default {
     sideOffset: {
       control: 'number',
     },
+    onTooltipClick: { action: 'clicked' },
   },
 } as Meta;
 
@@ -45,4 +46,5 @@ Default.args = {
   tooltipLocation: 'top',
   delayDuration: 300,
   sideOffset: 10,
+  onTooltipClick: () => alert('clicked'),
 };
