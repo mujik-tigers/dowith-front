@@ -45,20 +45,6 @@ export const HomePage = () => {
           </HeaderM.Right>
         </HeaderM>
       )}
-      {!isMobile && <Header userCode={userCode!} userAppName={userAppName!} />}
-      {isMobile && (
-        <HeaderM>
-          <HeaderM.Left>
-            <img src={Logo} alt="do-with 로고" />
-          </HeaderM.Left>
-          <HeaderM.Center>
-            <HeaderTitle>dowith</HeaderTitle>
-          </HeaderM.Center>
-          <HeaderM.Right>
-            <Avatar name={userCode!} variant="beam" size={40} />
-          </HeaderM.Right>
-        </HeaderM>
-      )}
       <ContentWrapper>
         <JoinedSpaceSection>
           <JoinedSpaceSectionHeader>
