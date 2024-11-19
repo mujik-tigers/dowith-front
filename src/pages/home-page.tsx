@@ -1,4 +1,3 @@
-import FileIcon from '@/assets/icons/file.svg?react';
 import HomeIcon from '@/assets/icons/home.svg?react';
 import PlusIcon from '@/assets/icons/plus.svg?react';
 import { Tooltip } from '@/components/common/tooltip/tooltip';
@@ -15,15 +14,18 @@ import { useMediaQuery } from '@/hooks/use-media-query';
 import { MOBILE_MEDIAQUERY } from '@/constants/media-query';
 import { useAuthCheckAndRedirectLogin } from '@/hooks/use-auth-check-and-redirect-login';
 import { SearchedSpaceList } from '@/components/space-list/searched-space-list';
+import { WaitingSpaceList } from '@/components/space-list/waiting-space-list';
 import { openModal } from '@/store/use-modal-store';
+import { useElementWidth } from '@/hooks/use-element-width';
 
 export const HomePage = () => {
   const userCode = useUserCode();
   const userAppName = useUserAppName();
   const { data: joinedSpaceList = [] } = useGetJoinedSpaceList();
   const isMobile = useMediaQuery(MOBILE_MEDIAQUERY);
-
   const isCheckingAuth = useAuthCheckAndRedirectLogin();
+  const { elementRef: joinedSpaceSectionRef, width: joinedSpaceSectionWidth } =
+    useElementWidth<HTMLDivElement>(isCheckingAuth);
 
   if (isCheckingAuth) {
     return <></>;
@@ -46,7 +48,7 @@ export const HomePage = () => {
         </HeaderM>
       )}
       <ContentWrapper>
-        <JoinedSpaceSection>
+        <JoinedSpaceSection ref={joinedSpaceSectionRef}>
           <JoinedSpaceSectionHeader>
             <TitleAndWaitButtonWrapper>
               <JoinedSpaceTitleWrapper>
@@ -56,13 +58,7 @@ export const HomePage = () => {
                   {joinedSpaceList.length} / {MAX_SPACES_PER_USER}
                 </JoinedSpaceCount>
               </JoinedSpaceTitleWrapper>
-              <WaitingSpaceDropdownButton>
-                <FileIcon className="size-7 md:size-6" />
-                <WaitingSpaceCountWrapper>
-                  {/* 참여 대기중 목록의 길이(개수) 표시 */}
-                  <WaitingSpaceCount>1</WaitingSpaceCount>
-                </WaitingSpaceCountWrapper>
-              </WaitingSpaceDropdownButton>
+              <WaitingSpaceList containerWidth={joinedSpaceSectionWidth} />
             </TitleAndWaitButtonWrapper>
             {joinedSpaceList.length > 0 && (
               <JoinedSpaceDescription>
@@ -107,11 +103,7 @@ const TitleAndWaitButtonWrapper = tw.div`flex w-full items-center justify-betwee
 const JoinedSpaceTitleWrapper = tw.div`flex items-center gap-2`;
 const JoinedSpaceTitle = tw.span`pt-1 text-B20 text-title md:text-B16`;
 const JoinedSpaceCount = tw.span`pt-1`;
-const WaitingSpaceDropdownButton = tw.button`relative flex h-10 w-10 items-center justify-center rounded-md border border-line p-2 md:(h-8 w-8)`;
-const WaitingSpaceCountWrapper = tw.div`absolute left-7 flex h-5 w-5 items-center justify-center rounded-full border border-line bg-white p-1 top-[-10px] md:(left-5 h-4 w-4 top-[-8px])`;
-const WaitingSpaceCount = tw.span`text-B12 text-red md:text-M10`;
 const JoinedSpaceDescription = tw.span`inline-block truncate text-M14 text-textWeak md:text-M10`;
 
 const SearchedSpaceSection = tw.div`flex grow flex-col items-start justify-between overflow-y-auto lg:h-[calc(100vh - 72px)] xl:h-[calc(100vh - 72px)]`;
-
 const TooltipWrapper = tw.div`fixed bottom-5 right-4 flex w-full items-center justify-end gap-2`;
