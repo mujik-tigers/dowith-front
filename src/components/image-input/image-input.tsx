@@ -55,7 +55,7 @@ export const ImageInput = forwardRef<
         <div className="relative">
           <ImagePreivew src={previewSrc} alt="preview" />
           <CloseIcon
-            className="bg-black rounded-xl cursor-pointer absolute top-1 right-1"
+            className="bg-black rounded-xl cursor-pointer absolute top-1 right-1 text-pureWhite"
             onClick={handleFileRemove}
           />
         </div>

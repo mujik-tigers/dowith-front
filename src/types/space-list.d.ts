@@ -40,3 +40,15 @@ type TRandomSpaceResponseData = {
     randomTeamOutlines: Array<TRandomSpaceData>;
   };
 };
+
+type TWaitingSpaceData = {
+  id: number;
+  title: string;
+  image: string | null;
+};
+
+type TWaitingSpaceResponseData = {
+  data: {
+    teamOutlines: Array<TWaitingSpaceData>;
+  };
+};
