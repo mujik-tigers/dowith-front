@@ -5,6 +5,7 @@ const Spaces = [
     description: '건강한 생활을 위한 운동 모임입니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ const Spaces = [
     description: '책을 읽고 함께 토론하는 모임입니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const Spaces = [
     description: '프로그래밍에 대해 배우고 연습합니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ const Spaces = [
     description: '요리를 배우며 함께 요리하는 모임',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 5,
@@ -33,6 +37,7 @@ const Spaces = [
     description: '함께 산책하며 대화를 나누는 모임',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 6,
@@ -40,6 +45,7 @@ const Spaces = [
     description: '그림을 그리며 창의력을 발휘해봅니다.',
     currentPeople: 2,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 7,
@@ -47,6 +53,7 @@ const Spaces = [
     description: '악기 연습을 함께 하는 모임.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 8,
@@ -54,6 +61,7 @@ const Spaces = [
     description: '외국어를 배우고 연습하는 모임',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 9,
@@ -61,6 +69,7 @@ const Spaces = [
     description: '명상으로 마음의 평화를 찾습니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 10,
@@ -68,6 +77,7 @@ const Spaces = [
     description: '글을 쓰며 생각을 정리해보는 모임',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 11,
@@ -75,6 +85,7 @@ const Spaces = [
     description: '함께 춤을 추는 모임',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 12,
@@ -82,6 +93,7 @@ const Spaces = [
     description: '사진을 찍으며 순간을 기록합니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 13,
@@ -89,6 +101,7 @@ const Spaces = [
     description: '새로운 요리를 시도하며 즐깁니다.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 14,
@@ -96,6 +109,7 @@ const Spaces = [
     description: '영화를 보고 감상을 나눕니다.',
     currentPeople: 9,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 15,
@@ -103,6 +117,7 @@ const Spaces = [
     description: '좋은 음악을 함께 들어봅니다.',
     currentPeople: 10,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 16,
@@ -110,6 +125,7 @@ const Spaces = [
     description: '자전거를 타며 체력을 단련합니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 17,
@@ -117,6 +133,7 @@ const Spaces = [
     description: '주요 뉴스와 이슈에 대해 논의합니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 18,
@@ -124,6 +141,7 @@ const Spaces = [
     description: '수공예를 통해 작품을 만듭니다.',
     currentPeople: 2,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 19,
@@ -131,6 +149,7 @@ const Spaces = [
     description: '새로운 기술을 배우며 개발합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 20,
@@ -138,6 +157,7 @@ const Spaces = [
     description: '청소를 통해 쾌적한 공간을 만듭니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 21,
@@ -145,6 +165,7 @@ const Spaces = [
     description: '매일 30분 이상 운동합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 22,
@@ -152,6 +173,7 @@ const Spaces = [
     description: '매일 책을 읽고 생각을 나눕니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 23,
@@ -159,6 +181,7 @@ const Spaces = [
     description: '매일 코딩하며 실력을 높입니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 24,
@@ -166,6 +189,7 @@ const Spaces = [
     description: '매일 요리하는 모임입니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 25,
@@ -173,6 +197,7 @@ const Spaces = [
     description: '매일 산책하며 건강을 챙깁니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 26,
@@ -180,6 +205,7 @@ const Spaces = [
     description: '매일 그림을 그려보는 모임입니다.',
     currentPeople: 2,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 27,
@@ -187,6 +213,7 @@ const Spaces = [
     description: '악기 연습으로 실력을 향상합니다.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 28,
@@ -194,6 +221,7 @@ const Spaces = [
     description: '외국어를 매일 학습합니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 29,
@@ -201,6 +229,7 @@ const Spaces = [
     description: '명상을 통해 내적 평화를 찾습니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 30,
@@ -208,6 +237,7 @@ const Spaces = [
     description: '글쓰기를 통해 생각을 정리해봅니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 31,
@@ -215,6 +245,7 @@ const Spaces = [
     description: '함께 등산을 즐기는 모임입니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 32,
@@ -222,6 +253,7 @@ const Spaces = [
     description: '헬스와 운동을 함께 합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 33,
@@ -229,6 +261,7 @@ const Spaces = [
     description: '명화와 예술 작품을 감상합니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 34,
@@ -236,6 +269,7 @@ const Spaces = [
     description: '자연 속에서 캠핑을 즐깁니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 35,
@@ -243,6 +277,7 @@ const Spaces = [
     description: '도자기 공예를 배우는 모임입니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 36,
@@ -250,6 +285,7 @@ const Spaces = [
     description: '다양한 문화를 경험합니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 37,
@@ -257,6 +293,7 @@ const Spaces = [
     description: '사진을 편집하며 창의력을 키웁니다.',
     currentPeople: 2,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 38,
@@ -264,6 +301,7 @@ const Spaces = [
     description: '새로운 악기를 배우는 모임입니다.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 39,
@@ -271,6 +309,7 @@ const Spaces = [
     description: '자원 봉사 활동에 참여합니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 40,
@@ -278,6 +317,7 @@ const Spaces = [
     description: '책을 교환하며 지식을 나눕니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 41,
@@ -285,6 +325,7 @@ const Spaces = [
     description: '환경 보호를 위해 함께 활동합니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 42,
@@ -292,6 +333,7 @@ const Spaces = [
     description: '아침마다 운동을 합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 43,
@@ -299,6 +341,7 @@ const Spaces = [
     description: '영화를 보고 분석하는 모임입니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 44,
@@ -306,6 +349,7 @@ const Spaces = [
     description: '사회적 이슈에 대해 토론합니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 45,
@@ -313,6 +357,7 @@ const Spaces = [
     description: '창의력을 높이는 활동을 합니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 46,
@@ -320,6 +365,7 @@ const Spaces = [
     description: '자기계발을 목표로 함께합니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 47,
@@ -327,6 +373,7 @@ const Spaces = [
     description: '건강을 위한 습관을 실천합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 48,
@@ -334,6 +381,7 @@ const Spaces = [
     description: '스스로 학습하며 성장을 도모합니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 49,
@@ -341,6 +389,7 @@ const Spaces = [
     description: '새로운 사람들과 교류하는 모임입니다.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 50,
@@ -348,6 +397,7 @@ const Spaces = [
     description: '개발자들끼리 네트워킹을 도모합니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 51,
@@ -355,6 +405,7 @@ const Spaces = [
     description: '스트레스를 함께 해소해보아요.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 52,
@@ -362,6 +413,7 @@ const Spaces = [
     description: '올바른 생활 습관을 만듭니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 53,
@@ -369,6 +421,7 @@ const Spaces = [
     description: '하이킹으로 체력을 길러봅니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 54,
@@ -376,6 +429,7 @@ const Spaces = [
     description: '함께 코딩하며 협력합니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 55,
@@ -383,6 +437,7 @@ const Spaces = [
     description: '예술 작품을 탐방합니다.',
     currentPeople: 2,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 56,
@@ -390,6 +445,7 @@ const Spaces = [
     description: '다양한 음식을 탐방합니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 57,
@@ -397,6 +453,7 @@ const Spaces = [
     description: '자연 속을 탐험합니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 58,
@@ -404,6 +461,7 @@ const Spaces = [
     description: '책을 읽고 함께 공부합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 59,
@@ -411,6 +469,7 @@ const Spaces = [
     description: '함께 서핑을 즐깁니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 60,
@@ -418,6 +477,7 @@ const Spaces = [
     description: '삶을 계획하며 발전해봅니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 61,
@@ -425,6 +485,7 @@ const Spaces = [
     description: '건강한 식습관을 만듭니다.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 62,
@@ -432,6 +493,7 @@ const Spaces = [
     description: '멘토와 멘티가 함께 성장합니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 63,
@@ -439,6 +501,7 @@ const Spaces = [
     description: '다양한 취미를 시도해봅니다.',
     currentPeople: 2,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 64,
@@ -446,6 +509,7 @@ const Spaces = [
     description: '자연을 느끼며 산책합니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 65,
@@ -453,6 +517,7 @@ const Spaces = [
     description: '자기소개서를 작성합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 66,
@@ -460,6 +525,7 @@ const Spaces = [
     description: '공예를 통해 예술 감각을 키웁니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 67,
@@ -467,6 +533,7 @@ const Spaces = [
     description: '자유롭게 여행하며 경험을 쌓습니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 68,
@@ -474,6 +541,7 @@ const Spaces = [
     description: '매일 운동하며 건강을 유지합니다.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 69,
@@ -481,6 +549,7 @@ const Spaces = [
     description: '매일 운동하기를 실천합니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 70,
@@ -488,6 +557,7 @@ const Spaces = [
     description: '심리학을 함께 공부합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 71,
@@ -495,6 +565,7 @@ const Spaces = [
     description: '언어 회화를 연습합니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 72,
@@ -502,6 +573,7 @@ const Spaces = [
     description: '자취 생활을 위한 모임입니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 73,
@@ -509,6 +581,7 @@ const Spaces = [
     description: '취업 준비를 위한 모임입니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 74,
@@ -516,6 +589,7 @@ const Spaces = [
     description: '바다를 감상하며 힐링합니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 75,
@@ -523,6 +597,7 @@ const Spaces = [
     description: '혼자 여행하며 여유를 즐깁니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 76,
@@ -530,6 +605,7 @@ const Spaces = [
     description: '집에서 식물을 기릅니다.',
     currentPeople: 2,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 77,
@@ -537,6 +613,7 @@ const Spaces = [
     description: '마라톤에 도전하기 위한 모임입니다.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 78,
@@ -544,6 +621,7 @@ const Spaces = [
     description: '수영 실력을 키워보아요.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 79,
@@ -551,6 +629,7 @@ const Spaces = [
     description: '모바일 앱을 개발해봅니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 80,
@@ -558,6 +637,7 @@ const Spaces = [
     description: '자기계발서를 읽고 토론합니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 81,
@@ -565,6 +645,7 @@ const Spaces = [
     description: '플라잉 요가를 함께 합니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 82,
@@ -572,6 +653,7 @@ const Spaces = [
     description: '해외 뉴스를 시청합니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 83,
@@ -579,6 +661,7 @@ const Spaces = [
     description: '공예품을 직접 만들어봅니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 84,
@@ -586,6 +669,7 @@ const Spaces = [
     description: '아카펠라 연습 모임입니다.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 85,
@@ -593,6 +677,7 @@ const Spaces = [
     description: '꽃을 다듬으며 힐링합니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 86,
@@ -600,6 +685,7 @@ const Spaces = [
     description: '해외 제품을 함께 구매합니다.',
     currentPeople: 2,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 87,
@@ -607,6 +693,7 @@ const Spaces = [
     description: '어학 수업을 함께 수강합니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 88,
@@ -614,6 +701,7 @@ const Spaces = [
     description: '웃음을 나누는 코미디 모임입니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 89,
@@ -621,6 +709,7 @@ const Spaces = [
     description: '직접 가구를 제작합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 90,
@@ -628,6 +717,7 @@ const Spaces = [
     description: '함께 산행을 즐기는 모임입니다.',
     currentPeople: 6,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 91,
@@ -635,6 +725,7 @@ const Spaces = [
     description: '건강과 운동을 지향합니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 92,
@@ -642,6 +733,7 @@ const Spaces = [
     description: '스트레칭을 배우고 실천합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 93,
@@ -649,6 +741,7 @@ const Spaces = [
     description: '심리 상담을 공유합니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 94,
@@ -656,6 +749,7 @@ const Spaces = [
     description: '야구 경기를 함께 관람합니다.',
     currentPeople: 8,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 95,
@@ -663,6 +757,7 @@ const Spaces = [
     description: '손으로 만드는 공예 모임입니다.',
     currentPeople: 3,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 96,
@@ -670,6 +765,7 @@ const Spaces = [
     description: '핸드드립 커피를 배우는 모임입니다.',
     currentPeople: 2,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 97,
@@ -677,6 +773,7 @@ const Spaces = [
     description: '불꽃놀이를 함께 관람합니다.',
     currentPeople: 5,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 98,
@@ -684,6 +781,7 @@ const Spaces = [
     description: '혼자만의 시간을 위한 모임입니다.',
     currentPeople: 7,
     maxPeople: 10,
+    image: null,
   },
   {
     id: 99,
@@ -691,6 +789,7 @@ const Spaces = [
     description: '컬러링을 하며 스트레스를 풉니다.',
     currentPeople: 4,
     maxPeople: 10,
+    image: null,
   },
 ];
 
