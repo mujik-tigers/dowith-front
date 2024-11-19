@@ -53,7 +53,7 @@ export const AlertModal = ({
 };
 
 const ModalContent = styled(DialogContent)`
-  ${tw`flex h-40 w-80 flex-col gap-4 p-5`}
+  ${tw`flex flex-col gap-4 p-5`}
 `;
 
 const ModalHeader = styled(DialogHeader)`

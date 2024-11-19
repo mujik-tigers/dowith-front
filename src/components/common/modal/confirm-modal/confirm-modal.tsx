@@ -52,11 +52,11 @@ export const ConfirmModal = ({
 };
 
 const ModalContent = styled(DialogContent)`
-  ${tw`flex h-40 w-80 flex-col gap-4 p-5`}
+  ${tw`flex flex-col gap-4 p-5`}
 `;
 
 const ModalHeader = styled(DialogHeader)`
-  ${tw`flex flex-col gap-3`}
+  ${tw`flex flex-col gap-3 text-start`}
 `;
 
 const ModalTitle = styled(DialogTitle)`
