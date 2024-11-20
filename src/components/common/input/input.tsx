@@ -4,13 +4,9 @@ import React, { forwardRef } from 'react';
 const INPUT_TYPE_CLASSES = {
   outline:
     'rounded-lg bg-transparent text-M14 text-text placeholder:text-textWeak focus:bg-white focus:text-text focus:outline-line focus-visible:outline',
-  ghost: '',
+  ghost:
+    'rounded-lg bg-transparent text-M14 text-text placeholder:text-textWeak focus:bg-white focus:text-text focus:outline-none focus-visible:outline-none border-none',
 } as const;
-
-/** TODO
- *  - borderType ghost 스타일 추가 해야함 (todo 작성할 떄 사용할 input)
- *  - 투명하게 할지 밑줄 있는 input으로 할지 고민중
- */
 
 export const Input = forwardRef<
   HTMLInputElement,
@@ -50,3 +46,5 @@ export const Input = forwardRef<
 );
 
 Input.displayName = 'Input';
+
+// 고스트 추가
