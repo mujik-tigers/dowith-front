@@ -10,13 +10,30 @@ import DefulatSpaceProfile from '@/assets/icons/default-space-profile.svg';
 import { Button } from '../common/button/button';
 import { useState } from 'react';
 import { useGetWaitingSpaceList } from '@/hooks/queries/use-get-waiting-space-list';
+import { useDeleteWaitingSpace } from '@/hooks/queries/use-delete-waiting-space';
+import { useQueryClient } from '@tanstack/react-query';
 
-// 참여취소 api 추가 필요
-export const WaitingSpaceList: React.FC<{ containerWidth: number }> = ({
+export const WaitingSpaceList: React.FC<{ containerWidth?: number }> = ({
   containerWidth,
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const queryClient = useQueryClient();
   const { data: spaceData = [] } = useGetWaitingSpaceList();
+  const { mutate: deleteWaitingSpace } = useDeleteWaitingSpace();
+
+  const handleDeleteWaitingSpace = (requestId: number) => {
+    queryClient.setQueryData(
+      ['waitingSpaceList'],
+      (oldData: TWaitingSpaceData[]) => {
+        return oldData.filter((space) => space.requestId !== requestId);
+      }
+    );
+    deleteWaitingSpace(requestId, {
+      onError: () => {
+        queryClient.invalidateQueries({ queryKey: ['waitingSpaceList'] });
+      },
+    });
+  };
 
   return (
     <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -45,7 +62,7 @@ export const WaitingSpaceList: React.FC<{ containerWidth: number }> = ({
           </WaitingSpaceListHeader>
           <SpaceList>
             {spaceData.map((space) => (
-              <SpaceListItem key={space.id}>
+              <SpaceListItem key={space.requestId}>
                 <SpaceContentWrapper>
                   <ImageTitleWrapper>
                     <SpaceImage
@@ -54,7 +71,11 @@ export const WaitingSpaceList: React.FC<{ containerWidth: number }> = ({
                     />
                     <SpaceTitle>{space.title}</SpaceTitle>
                   </ImageTitleWrapper>
-                  <Button bgColor="white" size="fixedS">
+                  <Button
+                    bgColor="white"
+                    size="fixedS"
+                    onClick={() => handleDeleteWaitingSpace(space.requestId)}
+                  >
                     <CancelButtonTitle>요청 취소</CancelButtonTitle>
                   </Button>
                 </SpaceContentWrapper>
