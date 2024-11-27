@@ -10,7 +10,7 @@ export const getWaitingSpacesHandler = http.get(
     const userWaitingSpaces = Spaces.filter((space) =>
       WaitingSpaces.some((waitingSpaceId) => waitingSpaceId === space.id)
     ).map(({ id, title, image }) => ({
-      id,
+      requestId: id,
       title,
       image,
     }));
