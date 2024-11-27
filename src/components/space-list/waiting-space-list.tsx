@@ -13,12 +13,10 @@ import { useGetWaitingSpaceList } from '@/hooks/queries/use-get-waiting-space-li
 import { useDeleteWaitingSpace } from '@/hooks/queries/use-delete-waiting-space';
 import { useQueryClient } from '@tanstack/react-query';
 
-export const WaitingSpaceList: React.FC<{ containerWidth?: number }> = ({
-  containerWidth,
-}) => {
+export const WaitingSpaceList = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const queryClient = useQueryClient();
-  const { data: spaceData = [] } = useGetWaitingSpaceList();
+  const { data: waitingSpaceData = [] } = useGetWaitingSpaceList();
   const { mutate: deleteWaitingSpace } = useDeleteWaitingSpace();
 
   const handleDeleteWaitingSpace = (requestId: number) => {
@@ -41,15 +39,11 @@ export const WaitingSpaceList: React.FC<{ containerWidth?: number }> = ({
         <WaitingSpaceDropdownButton>
           <FileIcon className="size-7 md:size-6" />
           <WaitingSpaceCountWrapper>
-            <WaitingSpaceCount>{spaceData.length}</WaitingSpaceCount>
+            <WaitingSpaceCount>{waitingSpaceData.length}</WaitingSpaceCount>
           </WaitingSpaceCountWrapper>
         </WaitingSpaceDropdownButton>
       </PopoverTrigger>
-      <StyledPopoverContent
-        style={{ width: `${containerWidth}px` }}
-        align="end"
-        sideOffset={0}
-      >
+      <StyledPopoverContent align="end" sideOffset={0}>
         <WaitingSpaceWrapper>
           <WaitingSpaceListHeader>
             <WaitingSpaceListTitle>가입 대기 목록</WaitingSpaceListTitle>
@@ -61,7 +55,7 @@ export const WaitingSpaceList: React.FC<{ containerWidth?: number }> = ({
             />
           </WaitingSpaceListHeader>
           <SpaceList>
-            {spaceData.map((space) => (
+            {waitingSpaceData.map((space) => (
               <SpaceListItem key={space.requestId}>
                 <SpaceContentWrapper>
                   <ImageTitleWrapper>
@@ -89,8 +83,9 @@ export const WaitingSpaceList: React.FC<{ containerWidth?: number }> = ({
 };
 
 const StyledPopoverContent = styled(PopoverContent)`
-  ${tw`bg-white px-4 py-5`}
+  ${tw`bg-white px-4 py-5 [width:var(--joined-space-section-width)]`}
 `;
+
 const WaitingSpaceWrapper = tw.div`flex flex-col gap-4`;
 const WaitingSpaceListHeader = tw.div`flex items-center justify-between`;
 const WaitingSpaceListTitle = tw.span`text-B16`;

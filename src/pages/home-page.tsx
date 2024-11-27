@@ -16,7 +16,7 @@ import { useAuthCheckAndRedirectLogin } from '@/hooks/use-auth-check-and-redirec
 import { SearchedSpaceList } from '@/components/space-list/searched-space-list';
 import { WaitingSpaceList } from '@/components/space-list/waiting-space-list';
 import { openModal } from '@/store/use-modal-store';
-import { useElementWidth } from '@/hooks/use-element-width';
+import { useResizeCssVariable } from '@/hooks/use-resize-css-variable';
 
 export const HomePage = () => {
   const userCode = useUserCode();
@@ -24,8 +24,12 @@ export const HomePage = () => {
   const { data: joinedSpaceList = [] } = useGetJoinedSpaceList();
   const isMobile = useMediaQuery(MOBILE_MEDIAQUERY);
   const isCheckingAuth = useAuthCheckAndRedirectLogin();
-  const { elementRef: joinedSpaceSectionRef, width: joinedSpaceSectionWidth } =
-    useElementWidth<HTMLDivElement>(isCheckingAuth);
+  const { elementRef: joinedSpaceSectionRef } =
+    useResizeCssVariable<HTMLDivElement>(
+      '--joined-space-section-width',
+      -30,
+      isCheckingAuth
+    );
 
   if (isCheckingAuth) {
     return <></>;
@@ -58,7 +62,7 @@ export const HomePage = () => {
                   {joinedSpaceList.length} / {MAX_SPACES_PER_USER}
                 </JoinedSpaceCount>
               </JoinedSpaceTitleWrapper>
-              <WaitingSpaceList containerWidth={joinedSpaceSectionWidth} />
+              <WaitingSpaceList />
             </TitleAndWaitButtonWrapper>
             {joinedSpaceList.length > 0 && (
               <JoinedSpaceDescription>
