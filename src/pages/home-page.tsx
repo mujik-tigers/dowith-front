@@ -31,7 +31,7 @@ export const HomePage = () => {
       isCheckingAuth
     );
 
-  if (isCheckingAuth) {
+  if (isCheckingAuth || !userCode || !userAppName) {
     return <></>;
   }
 
