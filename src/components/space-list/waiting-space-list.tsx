@@ -10,13 +10,28 @@ import DefulatSpaceProfile from '@/assets/icons/default-space-profile.svg';
 import { Button } from '../common/button/button';
 import { useState } from 'react';
 import { useGetWaitingSpaceList } from '@/hooks/queries/use-get-waiting-space-list';
+import { useDeleteWaitingSpace } from '@/hooks/queries/use-delete-waiting-space';
+import { useQueryClient } from '@tanstack/react-query';
 
-// 참여취소 api 추가 필요
-export const WaitingSpaceList: React.FC<{ containerWidth: number }> = ({
-  containerWidth,
-}) => {
+export const WaitingSpaceList = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const { data: spaceData = [] } = useGetWaitingSpaceList();
+  const queryClient = useQueryClient();
+  const { data: waitingSpaceData = [] } = useGetWaitingSpaceList();
+  const { mutate: deleteWaitingSpace } = useDeleteWaitingSpace();
+
+  const handleDeleteWaitingSpace = (requestId: number) => {
+    queryClient.setQueryData(
+      ['waitingSpaceList'],
+      (oldData: TWaitingSpaceData[]) => {
+        return oldData.filter((space) => space.requestId !== requestId);
+      }
+    );
+    deleteWaitingSpace(requestId, {
+      onError: () => {
+        queryClient.invalidateQueries({ queryKey: ['waitingSpaceList'] });
+      },
+    });
+  };
 
   return (
     <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -24,15 +39,11 @@ export const WaitingSpaceList: React.FC<{ containerWidth: number }> = ({
         <WaitingSpaceDropdownButton>
           <FileIcon className="size-7 md:size-6" />
           <WaitingSpaceCountWrapper>
-            <WaitingSpaceCount>{spaceData.length}</WaitingSpaceCount>
+            <WaitingSpaceCount>{waitingSpaceData.length}</WaitingSpaceCount>
           </WaitingSpaceCountWrapper>
         </WaitingSpaceDropdownButton>
       </PopoverTrigger>
-      <StyledPopoverContent
-        style={{ width: `${containerWidth}px` }}
-        align="end"
-        sideOffset={0}
-      >
+      <StyledPopoverContent align="end" sideOffset={0}>
         <WaitingSpaceWrapper>
           <WaitingSpaceListHeader>
             <WaitingSpaceListTitle>가입 대기 목록</WaitingSpaceListTitle>
@@ -44,8 +55,8 @@ export const WaitingSpaceList: React.FC<{ containerWidth: number }> = ({
             />
           </WaitingSpaceListHeader>
           <SpaceList>
-            {spaceData.map((space) => (
-              <SpaceListItem key={space.id}>
+            {waitingSpaceData.map((space) => (
+              <SpaceListItem key={space.requestId}>
                 <SpaceContentWrapper>
                   <ImageTitleWrapper>
                     <SpaceImage
@@ -54,7 +65,11 @@ export const WaitingSpaceList: React.FC<{ containerWidth: number }> = ({
                     />
                     <SpaceTitle>{space.title}</SpaceTitle>
                   </ImageTitleWrapper>
-                  <Button bgColor="white" size="fixedS">
+                  <Button
+                    bgColor="white"
+                    size="fixedS"
+                    onClick={() => handleDeleteWaitingSpace(space.requestId)}
+                  >
                     <CancelButtonTitle>요청 취소</CancelButtonTitle>
                   </Button>
                 </SpaceContentWrapper>
@@ -68,8 +83,9 @@ export const WaitingSpaceList: React.FC<{ containerWidth: number }> = ({
 };
 
 const StyledPopoverContent = styled(PopoverContent)`
-  ${tw`bg-white px-4 py-5`}
+  ${tw`bg-white px-4 py-5 [width:var(--joined-space-section-width)]`}
 `;
+
 const WaitingSpaceWrapper = tw.div`flex flex-col gap-4`;
 const WaitingSpaceListHeader = tw.div`flex items-center justify-between`;
 const WaitingSpaceListTitle = tw.span`text-B16`;

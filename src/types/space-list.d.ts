@@ -42,13 +42,13 @@ type TRandomSpaceResponseData = {
 };
 
 type TWaitingSpaceData = {
-  id: number;
+  requestId: number;
   title: string;
   image: string | null;
 };
 
 type TWaitingSpaceResponseData = {
   data: {
-    teamOutlines: Array<TWaitingSpaceData>;
+    pendingRequestTeamInfos: Array<TWaitingSpaceData>;
   };
 };

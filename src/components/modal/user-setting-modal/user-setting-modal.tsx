@@ -21,7 +21,11 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useUpdateUserAppName } from '@/hooks/queries/use-update-user-app-name';
-import { useSetUserData, useClearUserData } from '@/store/auth/use-user-store';
+import {
+  useSetUserData,
+  useClearUserData,
+  useUserAppName,
+} from '@/store/auth/use-user-store';
 import { useNavigate } from 'react-router-dom';
 
 const nicknameSchema = z.object({
@@ -41,6 +45,7 @@ export const UserSettingModal = ({ onClose }: TUserSettingModalProps) => {
   const navigate = useNavigate();
   const setUserData = useSetUserData();
   const clearUserData = useClearUserData();
+  const userAppName = useUserAppName();
   const { mutate: updateUserAppName, isPending: isUpdatingNickname } =
     useUpdateUserAppName();
 
@@ -82,7 +87,7 @@ export const UserSettingModal = ({ onClose }: TUserSettingModalProps) => {
                   <FormControl>
                     <Input
                       borderType="outline"
-                      placeholder="닉네임을 입력해주세요."
+                      placeholder={userAppName as string}
                       {...field}
                     />
                   </FormControl>

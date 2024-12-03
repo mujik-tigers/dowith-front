@@ -5,12 +5,12 @@ import { getRandomBoolean } from '@/mocks/utils/random';
 import { http, HttpResponse } from 'msw';
 
 export const getWaitingSpacesHandler = http.get(
-  `${API_URL}/members/waiting`,
+  `${API_URL}/participation-request/me`,
   () => {
     const userWaitingSpaces = Spaces.filter((space) =>
       WaitingSpaces.some((waitingSpaceId) => waitingSpaceId === space.id)
     ).map(({ id, title, image }) => ({
-      id,
+      requestId: id,
       title,
       image,
     }));
@@ -24,7 +24,7 @@ export const getWaitingSpacesHandler = http.get(
     return HttpResponse.json(
       {
         data: {
-          teamOutlines: userWaitingSpaces,
+          pendingRequestTeamInfos: userWaitingSpaces,
         },
       },
       { status: 200 }
