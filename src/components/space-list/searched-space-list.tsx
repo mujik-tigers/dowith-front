@@ -56,6 +56,7 @@ export const SearchedSpaceList = () => {
   const { data: randomSpaceList } = useGetRandomSpaceList();
 
   const spaceListClickHandler = (spaceId: number, spaceTitle: string) => {
+    console.log(spaceId);
     openModal({
       type: 'confirm',
       id: 'space-join-request',
