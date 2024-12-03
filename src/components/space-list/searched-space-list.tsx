@@ -12,6 +12,7 @@ import { useDebounceInput } from '@/hooks/use-debounce-input';
 import { LoadingSpinner } from '../common/loading-spinner/loading-spinner';
 import { useUserAppName } from '@/store/auth/use-user-store';
 import { useGetRandomSpaceList } from '@/hooks/queries/use-get-random-space-list';
+import { openModal } from '@/store/use-modal-store';
 
 const searchFormSchema = z.object({
   keyword: z
@@ -54,10 +55,27 @@ export const SearchedSpaceList = () => {
 
   const { data: randomSpaceList } = useGetRandomSpaceList();
 
+  const spaceListClickHandler = (spaceId: number, spaceTitle: string) => {
+    openModal({
+      type: 'confirm',
+      id: 'space-join-request',
+      props: {
+        title: '스페이스 참여 요청',
+        description: `${spaceTitle}에 참여 요청을 보내시겠습니까?`,
+        confirmButtonBgColor: 'black',
+        // 스페이스 참여 요청 api 호출
+        onConfirm: () => {},
+      },
+    });
+  };
+
   const renderSpaceListContent = () => {
     if (!debounedKeyword) {
       return randomSpaceList?.map((space) => (
-        <SpaceListItem key={space.id}>
+        <SpaceListItem
+          key={space.id}
+          onClick={() => spaceListClickHandler(space.id, space.title)}
+        >
           <SpaceContentWrapper>
             <ImageTitleWrapper>
               <SpaceImage
@@ -88,7 +106,10 @@ export const SearchedSpaceList = () => {
     }
 
     return searchedSpaceList?.map((space) => (
-      <SpaceListItem key={space.id}>
+      <SpaceListItem
+        key={space.id}
+        onClick={() => spaceListClickHandler(space.id, space.title)}
+      >
         <SpaceContentWrapper>
           <ImageTitleWrapper>
             <SpaceImage
@@ -169,7 +190,7 @@ const SearchResultKeyword = tw.span`text-title text-M16 md:text-M12`;
 const SearchResultText = tw.span`text-M16 text-text md:text-M12`;
 
 const SpaceList = tw.ul`flex w-full flex-col items-start gap-5 md:gap-2`;
-const SpaceListItem = tw.li`flex w-full flex-col items-center gap-2 xl:flex-row`;
+const SpaceListItem = tw.li`flex w-full cursor-pointer flex-col items-center gap-2 xl:flex-row`;
 const SpaceContentWrapper = tw.div`flex w-full justify-between`;
 const ImageTitleWrapper = tw.div`flex items-center gap-2 min-w-[18rem] md:min-w-[14rem]`;
 const SpaceImage = tw.img`h-8 w-8 md:(h-6 w-6)`;

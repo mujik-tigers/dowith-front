@@ -20,14 +20,15 @@ export const AuthRedirectPage = () => {
         { authorizationCode, oauthType },
         {
           onSuccess: (data) => {
-            const { code, name, accessToken, refreshToken } = data;
+            const { code, name, accessToken, refreshToken, firstTime } = data;
             setUserData({
               userCode: code,
               userAppName: name,
               accessToken: accessToken,
               refreshToken: refreshToken,
             });
-            navigate('/setup/app-name');
+
+            firstTime ? navigate('/setup/app-name') : navigate('/home');
           },
         }
       );
